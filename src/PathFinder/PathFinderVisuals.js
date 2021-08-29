@@ -36,8 +36,8 @@ function PathFinder () {
         <div className="grid">
             {nodes.map((row, rowId) => {
                 return (
-                    <div>
-                        {row.map((node, nodeId) => <Node></Node>)}
+                    <div key={rowId}>
+                        {row.map((node, nodeId) => <Node key={nodeId}></Node>)}
                     </div>
                 )
             })}
