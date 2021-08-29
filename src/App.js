@@ -1,9 +1,8 @@
+import PathFinder from "./PathFinder/PathFinderVisuals";
 
 function App () {
   return (
-    <div>
-
-    </div>
+    <PathFinder></PathFinder>
   );
 }
 
