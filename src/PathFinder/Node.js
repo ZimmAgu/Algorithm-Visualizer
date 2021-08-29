@@ -1,11 +1,13 @@
 import React from 'react'
 
+// CSS Imports
+import "./Node.css"
+
 function Node () {
     return (
-        <>
-            
-           <h1>Hello from node</h1>
-        </>
+        <div className="node">
+
+        </div>
     )
 }
 
