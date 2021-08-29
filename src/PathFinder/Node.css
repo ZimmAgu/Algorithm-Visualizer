@@ -5,3 +5,11 @@
     height: 2em;
     margin: 0px;
 }
+
+.startNode {
+    background-color: green;
+  }
+  
+  .endNode {
+    background-color: red;
+  }

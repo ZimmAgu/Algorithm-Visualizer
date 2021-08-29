@@ -21,8 +21,15 @@ function PathFinder () {
         for (let row = 0; row < GRID_ROW_LENGTH; row++) {
             const currentRow = [];
 
-            for (let col = 0; col < GRID_COL_LENGTH; col++) {
-                currentRow.push([]);
+            for (let column = 0; column < GRID_COL_LENGTH; column++) {
+                const currentNode = {
+                    row,
+                    column,
+                    isStart: row === 5 && column === 5,
+                    isEnd: row === 5 && column === 20,
+                }
+
+                currentRow.push(currentNode);
             }
             grid.push(currentRow);
         }
@@ -30,14 +37,25 @@ function PathFinder () {
         setNodes(grid);
     }, [])
 
-    console.log(nodes)
 
     return (
         <div className="grid">
             {nodes.map((row, rowId) => {
                 return (
                     <div key={rowId}>
-                        {row.map((node, nodeId) => <Node key={nodeId}></Node>)}
+                        {
+                            row.map((node, nodeId) => {
+                                const {isStart, isEnd} = node;
+                                return (
+                                    <Node 
+                                        key={nodeId}
+                                        startNode={isStart}
+                                        endNode={isEnd}
+                                    >
+                                    </Node>
+                                )
+                            })
+                        }
                     </div>
                 )
             })}
