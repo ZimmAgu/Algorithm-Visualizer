@@ -10,7 +10,9 @@ function Node (props) {
         startNode, 
         endNode, 
         visited,
-        mouseDownEventHandler
+        mouseDownEventHandler,
+        mouseUpEventHandler,
+        mouseEnterEventHandler
     } = props;
 
 
@@ -25,6 +27,8 @@ function Node (props) {
         <div 
             className={`node ${nodeColorClass}`}
             onMouseDown={() => mouseDownEventHandler(nodeRow, nodeColumn)}
+            onMouseUp={() => mouseUpEventHandler()}
+            onMouseEnter={() => mouseEnterEventHandler(nodeRow, nodeColumn)}
         >
         </div>
     )

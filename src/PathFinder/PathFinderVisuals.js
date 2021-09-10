@@ -21,6 +21,8 @@ const END_NODE_COLUMN = 20;
 
 function PathFinder () {
     const [gridState, setGridState] = useState([]);
+    const [mousePressedState, setMousePressedState] = useState(false);
+
 
     useEffect(() => {
         const grid = [];
@@ -65,6 +67,20 @@ function PathFinder () {
         }
     }
 
+
+
+    function handleMouseDownEvent (row, column) {
+        console.log('Mouse down event', row, column)
+    } 
+
+    function handleMouseUpEvent () {
+        console.log('Mouse up event')
+    } 
+
+    function handleMouseEnterEvent (row, column) {
+        console.log('Mouse enter event', row, column)
+    }
+
     
 
     return (
@@ -95,8 +111,17 @@ function PathFinder () {
                                             startNode={isStart}
                                             endNode={isEnd}
                                             visited={isVisited}
+
                                             mouseDownEventHandler={(row, column) => {
                                                 handleMouseDownEvent(row, column);
+                                            }}
+
+                                            mouseUpEventHandler={() => {
+                                                handleMouseUpEvent();
+                                            }}
+
+                                            mouseEnterEventHandler={(row, column) => {
+                                                handleMouseEnterEvent(row, column);
                                             }}
                                         >
                                         </Node>
@@ -113,9 +138,7 @@ function PathFinder () {
 
 
 
-function handleMouseDownEvent (row, column) {
-    console.log('Mouse down event', row, column)
-} 
+
 
 function setUpGrid (grid) {
     
