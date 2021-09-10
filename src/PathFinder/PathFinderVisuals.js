@@ -67,7 +67,6 @@ function PathFinder () {
 
     
 
-
     return (
         <>
             <button onClick={() => visualizeDijkstra(gridState)}>
@@ -96,6 +95,9 @@ function PathFinder () {
                                             startNode={isStart}
                                             endNode={isEnd}
                                             visited={isVisited}
+                                            mouseDownEventHandler={(row, column) => {
+                                                handleMouseDownEvent(row, column);
+                                            }}
                                         >
                                         </Node>
                                     )
@@ -111,23 +113,9 @@ function PathFinder () {
 
 
 
-// function visualizeDijkstra (grid) {
-//     const startNode = grid[START_NODE_ROW][START_NODE_COLUMN];
-//     const endNode = grid[END_NODE_ROW][END_NODE_COLUMN];
-
-//     const visitedNodesInOrder = dijkstra(grid, startNode, endNode)
-
-//     animateDijkstra(visitedNodesInOrder)
-// }
-
-
-// function animateDijkstra (visitedNodesInOrder) {
-//     console.log(visitedNodesInOrder)
-//     // visitedNodesInOrder.forEach(node => {
-//     //     const newGrid = grid
-//     // })
-// }
-
+function handleMouseDownEvent (row, column) {
+    console.log('Mouse down event', row, column)
+} 
 
 function setUpGrid (grid) {
     

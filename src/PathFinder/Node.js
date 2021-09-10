@@ -5,12 +5,15 @@ import "./Node.css"
 
 function Node (props) {
     const {
+        nodeRow,
+        nodeColumn,
         startNode, 
         endNode, 
-        visited
+        visited,
+        mouseDownEventHandler
     } = props;
 
-    
+
     const nodeColorClass = (
         startNode ? 'startNode' 
         : endNode ? 'endNode' 
@@ -19,8 +22,10 @@ function Node (props) {
     );
     
     return (
-        <div className={`node ${nodeColorClass}`}>
-
+        <div 
+            className={`node ${nodeColorClass}`}
+            onMouseDown={() => mouseDownEventHandler(nodeRow, nodeColumn)}
+        >
         </div>
     )
 }
