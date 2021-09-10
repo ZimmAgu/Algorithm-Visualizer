@@ -20,34 +20,71 @@ const END_NODE_ROW = 5;
 const END_NODE_COLUMN = 20;
 
 function PathFinder () {
-    const [nodes, setNodes] = useState([]);
+    const [gridState, setGridState] = useState([]);
 
     useEffect(() => {
         const grid = [];
 
         setUpGrid(grid)
 
-        setNodes(grid);
+        setGridState(grid);
     }, [])
+
+
+    function visualizeDijkstra (grid) {
+        const startNode = grid[START_NODE_ROW][START_NODE_COLUMN];
+        const endNode = grid[END_NODE_ROW][END_NODE_COLUMN];
+    
+        const visitedNodesInOrder = dijkstra(grid, startNode, endNode)
+    
+        animateDijkstra(visitedNodesInOrder, grid)
+    }
+    
+
+    
+    function animateDijkstra (visitedNodesInOrder, grid) {
+        console.log(visitedNodesInOrder)
+
+        visitedNodesInOrder.forEach(node => {
+            const newGrid = grid.slice()
+
+            const newnode = {
+                ...node,
+                isVisited: true
+            }
+
+            // console.log(newnode)
+
+            newGrid[node.row][node.column] = newnode;
+
+            setTimeout(() => {
+                setGridState(newGrid)
+            }, 100);
+
+        })
+    }
+
+    
 
 
     return (
         <>
-            <button onClick={() => visualizeDijkstra(nodes)}>
+            <button onClick={() => visualizeDijkstra(gridState)}>
                 Visualize Dijkstra's Algorithm
             </button>
             <div className="grid">
-                {nodes.map((row, rowId) => {
+                {gridState.map((row, rowId) => {
                     return (
                         <div key={rowId}>
                             {
                                 row.map((node, nodeId) => {
-                                    const {isStart, isEnd} = node;
+                                    const {isStart, isEnd, isVisited} = node;
                                     return (
                                         <Node 
                                             key={nodeId}
                                             startNode={isStart}
                                             endNode={isEnd}
+                                            visited={isVisited}
                                         >
                                         </Node>
                                     )
@@ -62,14 +99,23 @@ function PathFinder () {
 }
 
 
-function visualizeDijkstra (grid) {
-    const startNode = grid[START_NODE_ROW][START_NODE_COLUMN];
-    const endNode = grid[END_NODE_ROW][END_NODE_COLUMN];
 
-    dijkstra(grid, startNode, endNode)
+// function visualizeDijkstra (grid) {
+//     const startNode = grid[START_NODE_ROW][START_NODE_COLUMN];
+//     const endNode = grid[END_NODE_ROW][END_NODE_COLUMN];
 
-    console.log(dijkstra(grid, startNode, endNode))
-}
+//     const visitedNodesInOrder = dijkstra(grid, startNode, endNode)
+
+//     animateDijkstra(visitedNodesInOrder)
+// }
+
+
+// function animateDijkstra (visitedNodesInOrder) {
+//     console.log(visitedNodesInOrder)
+//     // visitedNodesInOrder.forEach(node => {
+//     //     const newGrid = grid
+//     // })
+// }
 
 
 function setUpGrid (grid) {

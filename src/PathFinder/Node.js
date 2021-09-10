@@ -4,8 +4,8 @@ import React from 'react'
 import "./Node.css"
 
 function Node (props) {
-    const {startNode, endNode} = props;
-    const nodeColorClass = startNode ? 'startNode' : endNode ? 'endNode' : '';
+    const {startNode, endNode, visited} = props;
+    const nodeColorClass = startNode ? 'startNode' : endNode ? 'endNode' : visited ? 'visited' : '';
     
     return (
         <div className={`node ${nodeColorClass}`}>

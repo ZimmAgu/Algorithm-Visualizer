@@ -7,9 +7,13 @@
 }
 
 .startNode {
-    background-color: green;
-  }
+  background-color: green;
+}
   
-  .endNode {
-    background-color: red;
-  }
+.endNode {
+  background-color: red;
+}
+
+.visited {
+  background-color: blue;
+}
