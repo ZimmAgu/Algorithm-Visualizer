@@ -45,7 +45,8 @@ function PathFinder () {
     function animateDijkstra (visitedNodesInOrder, grid) {
         console.log(visitedNodesInOrder)
 
-        // visitedNodesInOrder.forEach(node => {
+        const ANIMATION_SPEED = 50;
+
         for (let i = 0; i < visitedNodesInOrder.length; i++) {
             const node = visitedNodesInOrder[i]
             setTimeout(() => {
@@ -59,12 +60,9 @@ function PathFinder () {
 
             newGrid[node.row][node.column] = newnode;
                 setGridState(newGrid)
-            }, 100 * i);
+            }, ANIMATION_SPEED * i);
 
         }
-            
-
-        // })
     }
 
     
