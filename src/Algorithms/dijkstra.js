@@ -2,16 +2,33 @@ function dijkstra (graph, startNode, endNode) {
     const visitedNodesInOrder = [];
 
     const unvisitedNodes = getAllNodes(graph);
-    setInitialNodeDistance(unvisitedNodes, startNode)
+    setInitialNodes(unvisitedNodes, startNode)
 
+    let functionRan = false;
     while (!!unvisitedNodes.length) { // After every shift, the amount of unvisited nodes will decrease by 1 until there are none left
         sortNodesByDistance(unvisitedNodes);   
+        
         const nearestNode = unvisitedNodes.shift(); // The starting node will always have a distance of 0 so the starting node should always be shifted first 
-        nearestNode.isVisited = true;
-        getUnvisitedNeighbors(nearestNode, graph)
+        
+        nearestNode.visited = true; // The current node being evaluated in the while loop is visited
+        visitedNodesInOrder.push(nearestNode)
+
+        // if (nearestNode.distance === Infinity) {
+            
+        // }
+
+        // if (nearestNode === endNode) {
+            
+        // }
+        
+        updateUnvisitedNeighbors(nearestNode, graph)
+        if (functionRan) return
     }
     
 }
+
+
+
 
 
 function getAllNodes (grid) {
@@ -26,18 +43,46 @@ function getAllNodes (grid) {
 
 
 
-function setInitialNodeDistance (nodes, startNode) {
+
+
+
+
+function setInitialNodes (nodes, startNode) {
     nodes.forEach(node => {
         if (node === startNode) {   // Sets the distance of the start node to 0
             node.distance = 0;
+            node.visited = true;
         } else {                    // Sets the distance of every other node to infinity
             node.distance = Infinity;
+            node.visited = false;
         }
     })
 }
-  
+
+
+
+
+
+
 function sortNodesByDistance(unvisitedNodes) { // Sorts nodes based on distance (smallest to largest)
     unvisitedNodes.sort((nodeA, nodeB) => nodeA.distance - nodeB.distance);
+}
+
+
+
+
+
+
+
+function updateUnvisitedNeighbors(node, grid) {
+    const unvisitedNeighbors = getUnvisitedNeighbors(node, grid);
+    
+    unvisitedNeighbors.forEach(neighbor => {
+        neighbor.distance = (node.distance + 1);
+        neighbor.previousNode = node
+    }) 
+
+    console.log(unvisitedNeighbors)
 }
 
 
@@ -62,9 +107,8 @@ function getUnvisitedNeighbors(node, grid) {    // Gets the nearest unvisited ne
         neighbors.push(grid[row][column + 1]); 
     } 
 
-    // const result = neighbors.filter(neighbor => !neighbor.isVisited);
-    return neighbors.filter(neighbor => !neighbor.isVisited);   // Returns neighbors that have not been visited
-
+    // const result = neighbors.filter(neighbor => !neighbor.visited);
+    return neighbors.filter(neighbor => neighbor.visited === false);   // Returns neighbors that have not been visited
     // console.log(result);
     // console.log(neighbors)
 
