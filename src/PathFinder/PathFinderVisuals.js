@@ -25,21 +25,7 @@ function PathFinder () {
     useEffect(() => {
         const grid = [];
 
-        for (let row = 0; row < GRID_ROW_LENGTH; row++) {
-            const currentRow = [];
-
-            for (let column = 0; column < GRID_COL_LENGTH; column++) {
-                const currentNode = {
-                    row,
-                    column,
-                    isStart: row === START_NODE_ROW && column === START_NODE_COLUMN,
-                    isEnd: row === END_NODE_ROW && column === END_NODE_COLUMN,
-                }
-
-                currentRow.push(currentNode);
-            }
-            grid.push(currentRow);
-        }
+        setUpGrid(grid)
 
         setNodes(grid);
     }, [])
@@ -81,6 +67,28 @@ function visualizeDijkstra (grid) {
     const endNode = grid[END_NODE_ROW][END_NODE_COLUMN];
 
     dijkstra(grid, startNode, endNode)
+
+    console.log(dijkstra(grid, startNode, endNode))
+}
+
+
+function setUpGrid (grid) {
+    
+    for (let row = 0; row < GRID_ROW_LENGTH; row++) {
+        const currentRow = [];
+
+        for (let column = 0; column < GRID_COL_LENGTH; column++) {
+            const currentNode = {
+                row,
+                column,
+                isStart: row === START_NODE_ROW && column === START_NODE_COLUMN,
+                isEnd: row === END_NODE_ROW && column === END_NODE_COLUMN,
+            }
+
+            currentRow.push(currentNode);
+        }
+        grid.push(currentRow);
+    }
 }
 
 export default PathFinder

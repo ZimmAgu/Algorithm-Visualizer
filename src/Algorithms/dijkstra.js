@@ -4,7 +4,7 @@ function dijkstra (graph, startNode, endNode) {
     const unvisitedNodes = getAllNodes(graph);
     setInitialNodes(unvisitedNodes, startNode)
 
-    let functionRan = false;
+    // let functionRan = false;
     while (!!unvisitedNodes.length) { // After every shift, the amount of unvisited nodes will decrease by 1 until there are none left
         sortNodesByDistance(unvisitedNodes);   
         
@@ -14,15 +14,15 @@ function dijkstra (graph, startNode, endNode) {
         visitedNodesInOrder.push(nearestNode)
 
         // if (nearestNode.distance === Infinity) {
-            
+        //     console.log('hello')
+        //     // return visitedNodesInOrder;
         // }
 
-        // if (nearestNode === endNode) {
-            
-        // }
+        if (nearestNode === endNode) {  // When the end node gets reached return all of the nodes in order that it took to get there
+            return visitedNodesInOrder
+        }
         
         updateUnvisitedNeighbors(nearestNode, graph)
-        if (functionRan) return
     }
     
 }
@@ -81,8 +81,6 @@ function updateUnvisitedNeighbors(node, grid) {
         neighbor.distance = (node.distance + 1);
         neighbor.previousNode = node
     }) 
-
-    console.log(unvisitedNeighbors)
 }
 
 
