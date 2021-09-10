@@ -70,14 +70,19 @@ function PathFinder () {
 
 
     function handleMouseDownEvent (row, column) {
+        setMousePressedState(true);
         console.log('Mouse down event', row, column)
     } 
 
     function handleMouseUpEvent () {
+        setMousePressedState(false);
         console.log('Mouse up event')
     } 
 
     function handleMouseEnterEvent (row, column) {
+        if (!mousePressedState) {
+            return;
+        }
         console.log('Mouse enter event', row, column)
     }
 
