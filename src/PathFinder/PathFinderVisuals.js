@@ -79,10 +79,20 @@ function PathFinder () {
                         <div key={rowId}>
                             {
                                 row.map((node, nodeId) => {
-                                    const {isStart, isEnd, isVisited} = node;
+
+                                    const {
+                                        row, 
+                                        column, 
+                                        isStart, 
+                                        isEnd, 
+                                        isVisited
+                                    } = node;
+
                                     return (
                                         <Node 
                                             key={nodeId}
+                                            nodeRow={row}
+                                            nodeColumn={column}
                                             startNode={isStart}
                                             endNode={isEnd}
                                             visited={isVisited}
@@ -130,6 +140,8 @@ function setUpGrid (grid) {
                 column,
                 isStart: row === START_NODE_ROW && column === START_NODE_COLUMN,
                 isEnd: row === END_NODE_ROW && column === END_NODE_COLUMN,
+                previousNode: null,     // The previous node of every node starts at null
+                isWall: false           // None of the nodes are walls initially
             }
 
             currentRow.push(currentNode);

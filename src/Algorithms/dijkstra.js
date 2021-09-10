@@ -46,10 +46,8 @@ function getAllNodes (grid) {
 
 
 
-function setInitialNodes (nodes, startNode) {   // Sets the initial values of the properties that end up getting added to the node
+function setInitialNodes (nodes, startNode) {   // Sets initial values for the node properties in which the starting node will have a different value for every other node
     nodes.forEach(node => {
-        node.previousNode = null;   // The previouse node of every node starts at null
-
         if (node === startNode) {   // Sets the distance of the start node to 0
             node.distance = 0;
             node.visited = true;
@@ -58,8 +56,6 @@ function setInitialNodes (nodes, startNode) {   // Sets the initial values of th
             node.visited = false;
         }
     })
-
-    console.log(nodes)
 }
 
 
