@@ -13,10 +13,9 @@ function dijkstra (graph, startNode, endNode) {
         nearestNode.visited = true; // The current node being evaluated in the while loop is visited
         visitedNodesInOrder.push(nearestNode)
 
-        // if (nearestNode.distance === Infinity) {
-        //     console.log('hello')
-        //     // return visitedNodesInOrder;
-        // }
+        if (nearestNode.distance === Infinity) {    // If the distance of the nearest neighbor is infinity something went wrong so the function should return the nodes we have
+            return visitedNodesInOrder;
+        }
 
         if (nearestNode === endNode) {  // When the end node gets reached return all of the nodes in order that it took to get there
             return visitedNodesInOrder
