@@ -17,3 +17,8 @@
 .visited {
   background-color: lightblue;
 }
+
+
+.wall {
+  background-color: gray;
+}

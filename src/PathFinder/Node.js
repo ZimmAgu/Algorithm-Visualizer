@@ -10,6 +10,7 @@ function Node (props) {
         startNode, 
         endNode, 
         visited,
+        wall,
         mouseDownEventHandler,
         mouseUpEventHandler,
         mouseEnterEventHandler
@@ -20,6 +21,7 @@ function Node (props) {
         startNode ? 'startNode' 
         : endNode ? 'endNode' 
         : visited ? 'visited' 
+        : wall ? 'wall'
         : ''
     );
     
