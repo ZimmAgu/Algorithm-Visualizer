@@ -12,20 +12,22 @@ function dijkstra (graph, startNode, endNode) {
         sortNodesByDistance(unvisitedNodes);   
         
         const nearestNode = unvisitedNodes.shift(); // The starting node will always have a distance of 0 so the starting node should always be shifted first 
-        
-        nearestNode.visited = true; // The current node being evaluated in the while loop is visited
-        visitedNodesInOrder.push(nearestNode)
-
         if (nearestNode.isWall) {
+            console.log('wall')
             continue;
         }
+
         if (nearestNode.distance === Infinity) {    // If the distance of the nearest neighbor is infinity something went wrong so the function should return the nodes we have
             return visitedNodesInOrder;
         }
-
+        
         if (nearestNode === endNode) {  // When the end node gets reached return all of the nodes in order that it took to get there
             return visitedNodesInOrder;
         }
+
+
+        nearestNode.visited = true; // The current node being evaluated in the while loop is visited
+        visitedNodesInOrder.push(nearestNode)
         
         updateUnvisitedNeighbors(nearestNode, graph)
     }

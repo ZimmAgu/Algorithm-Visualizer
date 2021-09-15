@@ -77,19 +77,25 @@ function PathFinder () {
 
         console.log(updatedGrid[row][column])
     } 
+    
+    function handleMouseEnterEvent (row, column) {
+        if (!mousePressedState) {
+            return;
+        }
+
+        const updatedGrid = getGridWithToggledWall(gridState, row, column)
+        setGridState(updatedGrid)
+
+        console.log('Mouse enter event', row, column)
+    }
+
 
     function handleMouseUpEvent () {
         setMousePressedState(false);
         console.log('Mouse up event')
     } 
 
-    function handleMouseEnterEvent (row, column) {
-        if (!mousePressedState) {
-            return;
-        }
-        console.log('Mouse enter event', row, column)
-    }
-
+    
     
 
     return (
