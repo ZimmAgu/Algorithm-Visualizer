@@ -45,7 +45,6 @@ function PathFinder () {
 
     
     function animateDijkstra (visitedNodesInOrder, grid) {
-        console.log(visitedNodesInOrder)
 
         const ANIMATION_SPEED = 50;
 
