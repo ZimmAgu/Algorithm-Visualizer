@@ -1,6 +1,6 @@
 import React from 'react'
 // Algorithms
-import dijkstra from '../Algorithms/dijkstra';
+import dijkstra, {getShortestPath} from '../Algorithms/dijkstra';
 
 // CSS Imports
 import './PathFinderVisuals.css'
@@ -38,7 +38,9 @@ function PathFinder () {
         const endNode = grid[END_NODE_ROW][END_NODE_COLUMN];
     
         const visitedNodesInOrder = dijkstra(grid, startNode, endNode)
-    
+        const shortestPath = getShortestPath(endNode);
+
+        console.log(shortestPath)
         animateDijkstra(visitedNodesInOrder, grid)
     }
     
@@ -72,7 +74,7 @@ function PathFinder () {
         const updatedGrid = getGridWithToggledWall(gridState, row, column)
         setGridState(updatedGrid)
         setMousePressedState(true);
-        console.log('Mouse down event', row, column)
+        // console.log('Mouse down event', row, column)
 
         console.log(updatedGrid[row][column])
     } 
@@ -85,13 +87,13 @@ function PathFinder () {
         const updatedGrid = getGridWithToggledWall(gridState, row, column)
         setGridState(updatedGrid)
 
-        console.log('Mouse enter event', row, column)
+        // console.log('Mouse enter event', row, column)
     }
 
 
     function handleMouseUpEvent () {
         setMousePressedState(false);
-        console.log('Mouse up event')
+        // console.log('Mouse up event')
     } 
 
     

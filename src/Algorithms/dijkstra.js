@@ -121,5 +121,21 @@ function getUnvisitedNeighbors(node, grid) {    // Gets the nearest unvisited ne
 
 
 
+
+function getShortestPath (endNode) {
+    const nodesInShortestPathOrder = [];
+
+    let currentNode = endNode;
+
+    while (currentNode !== null) {
+        nodesInShortestPathOrder.unshift(currentNode)   // Adds the new node to the beginning of the shortest path array
+        currentNode = currentNode.previousNode          // Sets the current node to its previous node
+    }   // By the time this loop is over, the nodesInShortestPathOrder array should contain the shortes path between the start node and the end node
+
+    return nodesInShortestPathOrder;
+}
+
+
 export default dijkstra;
+export {getShortestPath};
 
