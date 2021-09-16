@@ -12,8 +12,8 @@ function dijkstra (graph, startNode, endNode) {
         sortNodesByDistance(unvisitedNodes);   
         
         const nearestNode = unvisitedNodes.shift(); // The starting node will always have a distance of 0 so the starting node should always be shifted first 
-        if (nearestNode.isWall) {
-            console.log('wall')
+       
+        if (nearestNode.isWall) {   // If you get to a wall then skip it
             continue;
         }
 

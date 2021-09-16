@@ -21,4 +21,21 @@
 
 .wall {
   background-color: gray;
+
+  /* animation-name: wallPlacementAnimation;
+  animation-duration: 0.3s; */
 }
+/* 
+@keyframes wallPlacementAnimation {
+  0% {
+    transform: scale(0.5);
+  }
+
+  50% {
+    transform: scale(1.5);
+  }
+
+  100% {
+    transform: scale(1);
+  }
+} */
