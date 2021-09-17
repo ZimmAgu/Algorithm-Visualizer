@@ -1,6 +1,6 @@
 import React from 'react'
 // Algorithms
-import dijkstra, {getShortestPath} from '../Algorithms/dijkstra';
+import dijkstra, {getShortestPath} from '../Algorithms/dijkstra.js';
 
 // CSS Imports
 import './PathFinderVisuals.css'
@@ -40,23 +40,31 @@ function PathFinder () {
         const visitedNodesInOrder = dijkstra(grid, startNode, endNode)
         const shortestPath = getShortestPath(endNode);
 
-        animateDijkstra(grid, visitedNodesInOrder, shortestPath)
+        animateDijkstra(visitedNodesInOrder, shortestPath)
     }
     
 
     
-    function animateDijkstra (grid, visitedNodesInOrder, shortestPath) {
+    function animateDijkstra (visitedNodesInOrder, shortestPath) {
 
         const ANIMATION_SPEED = 50;
         
         for (let i = 0; i <= visitedNodesInOrder.length; i++) {
             if (i === visitedNodesInOrder.length) {
                 setTimeout(() =>{
-                    animateShortestPath(grid, shortestPath); 
+                    animateShortestPath(shortestPath); 
                 }, ANIMATION_SPEED * i)
             }
         }
         
+
+        animateNeighborVisitation(visitedNodesInOrder);
+    }
+
+
+    function animateNeighborVisitation (visitedNodesInOrder) {
+        
+        const ANIMATION_SPEED = 50;
 
         for (let i = 0; i < visitedNodesInOrder.length; i++) {
             const node = visitedNodesInOrder[i]
@@ -72,7 +80,7 @@ function PathFinder () {
     }
 
 
-    function animateShortestPath (grid, shortestPathNodes) {
+    function animateShortestPath (shortestPathNodes) {
 
         const ANIMATION_SPEED = 50;
 
@@ -89,8 +97,6 @@ function PathFinder () {
             }, ANIMATION_SPEED * i);
 
         }
-
-      
     }
 
 
@@ -99,8 +105,6 @@ function PathFinder () {
         const updatedGrid = getGridWithToggledWall(gridState, row, column)
         setGridState(updatedGrid)
         setMousePressedState(true);
-
-        console.log(gridState[row][column].isStart)
         // console.log('Mouse down event', row, column)
     } 
     
@@ -211,8 +215,7 @@ function getGridWithToggledWall (grid, row, column) {
     const newGrid = grid.slice();
     const node = newGrid[row][column];
 
-    console.log(node)
-    if (!node.isStart && !node.isEnd) {
+    if (!node.isStart && !node.isEnd) { // Starting and ending nodes can not be made in to walls
         const newNode = {
             ...node,
             isWall: !node.isWall,
