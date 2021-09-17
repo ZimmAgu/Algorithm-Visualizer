@@ -4,18 +4,14 @@
 import dijkstra, {getShortestPath} from '../Algorithms/dijkstra.js';
 
 // Animations Imports
-import { animateShortestPath, animateNeighborVisitation } from './universalAnimations.js';
+import { ANIMATION_SPEED, animateShortestPath, animateNeighborVisitation } from './universalAnimations.js';
+
+// Pathfinder Imports
+import { START_NODE_ROW, START_NODE_COLUMN, END_NODE_ROW, END_NODE_COLUMN } from '../PathFinder/gridFunctions'
 
 
 
-const START_NODE_ROW = 5;
-const START_NODE_COLUMN = 5;
-
-const END_NODE_ROW = 5;
-const END_NODE_COLUMN = 20;
-
-
-function visualizeDijkstra (grid) {
+function visualizeDijkstra (grid) { // Retrieves both the shortest nodes in order and the shortes poss
     const startNode = grid[START_NODE_ROW][START_NODE_COLUMN];
     const endNode = grid[END_NODE_ROW][END_NODE_COLUMN];
 
@@ -28,8 +24,6 @@ function visualizeDijkstra (grid) {
 
 
 function animateDijkstra (visitedNodesInOrder, shortestPath) {
-
-    const ANIMATION_SPEED = 50;
     
     for (let i = 0; i <= visitedNodesInOrder.length; i++) {
         if (i === visitedNodesInOrder.length) {

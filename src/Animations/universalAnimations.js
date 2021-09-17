@@ -38,5 +38,5 @@ function animateShortestPath (shortestPathNodes) {
 }
 
 
-export { animateShortestPath, animateNeighborVisitation }
+export { ANIMATION_SPEED, animateShortestPath, animateNeighborVisitation }
 
