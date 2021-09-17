@@ -7,7 +7,7 @@ import './PathFinderVisuals.css'
 import { useEffect, useState } from 'react';
 
 // PathFinder Imports
-import { setUpGrid, getGridWithToggledWall } from '../Grid/gridFunctions.js';
+import { setUpGrid, getGridWithToggledWall, getAllNodes } from '../Grid/gridFunctions.js';
 import Node from './Node.js'
 
 // Visuals Imports
@@ -26,10 +26,16 @@ function PathFinder () {
     useEffect(() => {
         const grid = [];
 
-        setUpGrid(grid)
+        setUpGrid(grid);
 
         setGridState(grid);
+
+        
     }, [])
+
+    useEffect(() => {
+        setDraggableObjects(gridState);
+    })
 
 
     function handleMouseDownEvent (row, column) {
@@ -43,6 +49,7 @@ function PathFinder () {
         if (!mousePressedState) {
             return;
         }
+        
 
         const updatedGrid = getGridWithToggledWall(gridState, row, column)
         setGridState(updatedGrid)
@@ -56,7 +63,17 @@ function PathFinder () {
         // console.log('Mouse up event')
     } 
 
-    
+    function setDraggableObjects (gridState) {
+        const nodes = getAllNodes(gridState);
+        
+        nodes.forEach(node => {
+            const currentNode = document.getElementById(`node-${node.row}-${node.column}`);
+
+            if (node.isStart || node.isEnd) {   // The starting and the ending nodes are draggable
+                currentNode.draggable = true;
+            }
+        })
+    }
     
 
     return (

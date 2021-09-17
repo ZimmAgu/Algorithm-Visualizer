@@ -1,4 +1,4 @@
-
+import { getAllNodes } from '../Grid/gridFunctions.js'
 
 
 function dijkstra (graph, startNode, endNode) {
@@ -35,18 +35,6 @@ function dijkstra (graph, startNode, endNode) {
 }
 
 
-
-
-
-function getAllNodes (grid) {
-    const nodes = [];
-    for (const row of grid) {
-      for (const node of row) {
-        nodes.push(node);
-      }
-    }
-    return nodes;
-}
 
 
 

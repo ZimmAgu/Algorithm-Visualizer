@@ -7,7 +7,9 @@ const START_NODE_COLUMN = 5;
 const END_NODE_ROW = 5;
 const END_NODE_COLUMN = 20;
 
-function setUpGrid (grid) {
+
+
+function setUpGrid (grid) {     // Sets ups initial grdi
     
     for (let row = 0; row < GRID_ROW_LENGTH; row++) {
         const currentRow = [];
@@ -26,6 +28,18 @@ function setUpGrid (grid) {
         }
         grid.push(currentRow);
     }
+}
+
+
+
+function getAllNodes (grid) {   // Gets all of the individual nodes in a grid
+    const nodes = [];
+    for (const row of grid) {
+      for (const node of row) {
+        nodes.push(node);
+      }
+    }
+    return nodes;
 }
 
 
@@ -49,5 +63,5 @@ function getGridWithToggledWall (grid, row, column) {
 }
 
 
-export { setUpGrid, getGridWithToggledWall }
-export { START_NODE_ROW, START_NODE_COLUMN, END_NODE_ROW, END_NODE_COLUMN }
+export { setUpGrid, getGridWithToggledWall, getAllNodes }   // Function exports
+export { START_NODE_ROW, START_NODE_COLUMN, END_NODE_ROW, END_NODE_COLUMN } // Constant exports

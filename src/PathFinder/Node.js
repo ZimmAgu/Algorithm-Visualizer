@@ -12,7 +12,8 @@ function Node (props) {
         wall,
         mouseDownEventHandler,
         mouseUpEventHandler,
-        mouseEnterEventHandler
+        mouseEnterEventHandler,
+        mouseDragEventHandler
     } = props;
 
 
