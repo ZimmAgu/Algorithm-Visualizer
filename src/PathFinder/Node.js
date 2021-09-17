@@ -9,7 +9,7 @@ function Node (props) {
         nodeColumn,
         startNode, 
         endNode, 
-        visited,
+        isVisited,
         wall,
         mouseDownEventHandler,
         mouseUpEventHandler,
@@ -20,13 +20,14 @@ function Node (props) {
     const nodeColorClass = (
         startNode ? 'startNode' 
         : endNode ? 'endNode' 
-        : visited ? 'visited' 
+        : isVisited ? 'visited' 
         : wall ? 'wall'
         : ''
     );
     
     return (
         <div 
+            id={`node-${nodeRow}-${nodeColumn}`}
             className={`node ${nodeColorClass}`}
             onMouseDown={() => mouseDownEventHandler(nodeRow, nodeColumn)}
             onMouseUp={() => mouseUpEventHandler()}

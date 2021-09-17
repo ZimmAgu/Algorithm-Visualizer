@@ -40,32 +40,63 @@ function PathFinder () {
         const visitedNodesInOrder = dijkstra(grid, startNode, endNode)
         const shortestPath = getShortestPath(endNode);
 
-        console.log(shortestPath)
-        animateDijkstra(visitedNodesInOrder, grid)
+        animateDijkstra(grid, visitedNodesInOrder, shortestPath)
     }
     
 
     
-    function animateDijkstra (visitedNodesInOrder, grid) {
+    function animateDijkstra (grid, visitedNodesInOrder, shortestPath) {
 
         const ANIMATION_SPEED = 50;
+        
+        // for (let i = 0; i < visitedNodesInOrder.length; i++) {
+        //     if (i === visitedNodesInOrder.length) {
+        //         setTimeout(() =>{
+        //             animateShortestPath(grid, shortestPath); 
+        //         }, ANIMATION_SPEED)
+        //     }
+        // }
+        
 
         for (let i = 0; i < visitedNodesInOrder.length; i++) {
             const node = visitedNodesInOrder[i]
             setTimeout(() => {
-            const newGrid = grid.slice()
+                const currentNode = document.getElementById(`node-${node.row}-${node.column}`)
 
-            const newnode = {
-                ...node,
-                isVisited: true
-            }
-
-
-            newGrid[node.row][node.column] = newnode;
-                setGridState(newGrid)
+                if (!currentNode.classList.contains("startNode")) { // I don't want to color the start node
+                    currentNode.classList.add("visited") 
+                }
+                
             }, ANIMATION_SPEED * i);
+        }
+
+        console.log(grid)
+
+    }
+
+
+    function animateShortestPath (grid, shortestPathNodes) {
+
+        const SHORTEST_PATH_ANIMATION_SPEED = 50;
+        for (let i = 0; i < shortestPathNodes.length; i++) {
+            const node = shortestPathNodes[i]
+            setTimeout(() => {
+                const newGrid = grid.slice()
+
+                const newnode = {
+                    ...node,
+                    shortestPathNode: true
+                }
+
+
+                newGrid[node.row][node.column] = newnode;
+
+                setGridState(newGrid)
+            }, SHORTEST_PATH_ANIMATION_SPEED * i);
 
         }
+
+      
     }
 
 
@@ -75,8 +106,6 @@ function PathFinder () {
         setGridState(updatedGrid)
         setMousePressedState(true);
         // console.log('Mouse down event', row, column)
-
-        console.log(updatedGrid[row][column])
     } 
     
     function handleMouseEnterEvent (row, column) {
@@ -116,7 +145,6 @@ function PathFinder () {
                                         column, 
                                         isStart, 
                                         isEnd, 
-                                        isVisited,
                                         isWall
                                     } = node;
 
@@ -128,7 +156,6 @@ function PathFinder () {
                                             nodeColumn={column}
                                             startNode={isStart}
                                             endNode={isEnd}
-                                            visited={isVisited}
                                             wall={isWall}
 
                                             mouseDownEventHandler={(row, column) => {
@@ -171,7 +198,8 @@ function setUpGrid (grid) {
                 isStart: row === START_NODE_ROW && column === START_NODE_COLUMN,
                 isEnd: row === END_NODE_ROW && column === END_NODE_COLUMN,
                 previousNode: null,     // The previous node of every node starts at null
-                isWall: false           // None of the nodes are walls initially
+                isWall: false,          // None of the nodes are walls initially
+                shortestPathNode: false,
             }
 
             currentRow.push(currentNode);
