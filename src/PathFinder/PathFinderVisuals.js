@@ -1,6 +1,4 @@
 import React from 'react'
-// Algorithms
-import dijkstra, {getShortestPath} from '../Algorithms/dijkstra.js';
 
 // CSS Imports
 import './PathFinderVisuals.css'
@@ -8,7 +6,11 @@ import './PathFinderVisuals.css'
 // Hook Imports
 import { useEffect, useState } from 'react';
 
+// PathFinder Imports
 import Node from './Node'
+
+// Visuals Imports
+import { visualizeDijkstra } from '../Animations/algorithmAnimations';
 
 const GRID_ROW_LENGTH = 15;
 const GRID_COL_LENGTH = 30;
@@ -31,74 +33,6 @@ function PathFinder () {
 
         setGridState(grid);
     }, [])
-
-
-    function visualizeDijkstra (grid) {
-        const startNode = grid[START_NODE_ROW][START_NODE_COLUMN];
-        const endNode = grid[END_NODE_ROW][END_NODE_COLUMN];
-    
-        const visitedNodesInOrder = dijkstra(grid, startNode, endNode)
-        const shortestPath = getShortestPath(endNode);
-
-        animateDijkstra(visitedNodesInOrder, shortestPath)
-    }
-    
-
-    
-    function animateDijkstra (visitedNodesInOrder, shortestPath) {
-
-        const ANIMATION_SPEED = 50;
-        
-        for (let i = 0; i <= visitedNodesInOrder.length; i++) {
-            if (i === visitedNodesInOrder.length) {
-                setTimeout(() =>{
-                    animateShortestPath(shortestPath); 
-                }, ANIMATION_SPEED * i)
-            }
-        }
-        
-
-        animateNeighborVisitation(visitedNodesInOrder);
-    }
-
-
-    function animateNeighborVisitation (visitedNodesInOrder) {
-        
-        const ANIMATION_SPEED = 50;
-
-        for (let i = 0; i < visitedNodesInOrder.length; i++) {
-            const node = visitedNodesInOrder[i]
-            setTimeout(() => {
-                const currentNode = document.getElementById(`node-${node.row}-${node.column}`)  // Gets each visited node by its id
-
-                if (!currentNode.classList.contains("startNode")) { // I don't want to color the start node
-                    currentNode.classList.add("visited")    // Adds a visited class to it so the CSS class can style it
-                }
-                
-            }, ANIMATION_SPEED * i);
-        }
-    }
-
-
-    function animateShortestPath (shortestPathNodes) {
-
-        const ANIMATION_SPEED = 50;
-
-        for (let i = 0; i < shortestPathNodes.length; i++) {
-            const node = shortestPathNodes[i]
-            setTimeout(() => {
-                const currentNode = document.getElementById(`node-${node.row}-${node.column}`)  // Gets each visited node by its id
-
-                if (!currentNode.classList.contains("startNode") && !currentNode.classList.contains("endNode")) {
-                    currentNode.classList.remove("visited") // Removes the visited class to remove all of the previous coloring of the node
-                    currentNode.classList.add("shortestPathNode")   // Adds the shortest path class to recolor the nodes
-                }
-                
-            }, ANIMATION_SPEED * i);
-
-        }
-    }
-
 
 
     function handleMouseDownEvent (row, column) {

@@ -1,1 +1,0 @@
-// These are the animations that can be used in any algorithms such as visiting neighbors and animating the shortest path
