@@ -9,7 +9,6 @@ function Node (props) {
         nodeColumn,
         startNode, 
         endNode, 
-        isVisited,
         wall,
         mouseDownEventHandler,
         mouseUpEventHandler,
@@ -20,7 +19,6 @@ function Node (props) {
     const nodeColorClass = (
         startNode ? 'startNode' 
         : endNode ? 'endNode' 
-        : isVisited ? 'visited' 
         : wall ? 'wall'
         : ''
     );
