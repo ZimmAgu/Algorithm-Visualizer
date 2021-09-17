@@ -13,7 +13,9 @@ function Node (props) {
         mouseDownEventHandler,
         mouseUpEventHandler,
         mouseEnterEventHandler,
-        mouseDragEventHandler
+        dragStartEventHandler,
+        dragOverEventHandler,
+        dropEventHandler
     } = props;
 
 
@@ -31,6 +33,9 @@ function Node (props) {
             onMouseDown={() => mouseDownEventHandler(nodeRow, nodeColumn)}
             onMouseUp={() => mouseUpEventHandler()}
             onMouseEnter={() => mouseEnterEventHandler(nodeRow, nodeColumn)}
+            onDragStart={() => dragStartEventHandler(nodeRow, nodeColumn)}
+            onDragOver={(event) => dragOverEventHandler(event)}
+            onDrop={() => dropEventHandler(nodeRow, nodeColumn)}
         >
         </div>
     )

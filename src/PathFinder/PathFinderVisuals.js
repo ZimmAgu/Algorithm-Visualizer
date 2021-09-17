@@ -29,8 +29,6 @@ function PathFinder () {
         setUpGrid(grid);
 
         setGridState(grid);
-
-        
     }, [])
 
     useEffect(() => {
@@ -63,6 +61,7 @@ function PathFinder () {
         // console.log('Mouse up event')
     } 
 
+
     function setDraggableObjects (gridState) {
         const nodes = getAllNodes(gridState);
         
@@ -73,6 +72,19 @@ function PathFinder () {
                 currentNode.draggable = true;
             }
         })
+    }
+
+    function handleDragStartEvent (row, column) {
+        console.log('Drag Start Event', row, column);
+    } 
+
+    function handleDragOver (event) {
+        event.stopPropagation();
+        event.preventDefault();
+    }
+
+    function handleDropEvent (row, column) {
+        console.log('Drop Event', row, column)
     }
     
 
@@ -116,6 +128,18 @@ function PathFinder () {
 
                                             mouseEnterEventHandler={(row, column) => {
                                                 handleMouseEnterEvent(row, column);
+                                            }}
+
+                                            dragStartEventHandler={(row, column) => {
+                                                handleDragStartEvent(row, column);
+                                            }}
+
+                                            dragOverEventHandler={(event) => {
+                                                handleDragOver(event)
+                                            }}
+
+                                            dropEventHandler={(row, column) => {
+                                                handleDropEvent(row, column)
                                             }}
                                         >
                                         </Node>
