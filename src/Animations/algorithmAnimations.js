@@ -7,7 +7,7 @@ import dijkstra, {getShortestPath} from '../Algorithms/dijkstra.js';
 import { ANIMATION_SPEED, animateShortestPath, animateNeighborVisitation } from './universalAnimations.js';
 
 // Pathfinder Imports
-import { START_NODE_ROW, START_NODE_COLUMN, END_NODE_ROW, END_NODE_COLUMN } from '../PathFinder/gridFunctions'
+import { START_NODE_ROW, START_NODE_COLUMN, END_NODE_ROW, END_NODE_COLUMN } from '../Grid/gridFunctions'
 
 
 

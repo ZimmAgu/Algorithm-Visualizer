@@ -7,7 +7,7 @@ import './PathFinderVisuals.css'
 import { useEffect, useState } from 'react';
 
 // PathFinder Imports
-import { setUpGrid, getGridWithToggledWall } from './gridFunctions.js';
+import { setUpGrid, getGridWithToggledWall } from '../Grid/gridFunctions.js';
 import Node from './Node.js'
 
 // Visuals Imports
