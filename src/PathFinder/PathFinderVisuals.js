@@ -75,7 +75,18 @@ function PathFinder () {
     }
 
     function handleDragStartEvent (row, column) {
-        console.log('Drag Start Event', row, column);
+
+        const newGrid = gridState.slice();
+        const node = newGrid[row][column];
+
+        if (node.isStart) {
+            // console.log(node)
+            node.isStart = false;
+        }
+        
+        setGridState(newGrid);
+        
+        // console.log('Drag Start Event', row, column);
     } 
 
     function handleDragOver (event) {
@@ -84,7 +95,14 @@ function PathFinder () {
     }
 
     function handleDropEvent (row, column) {
-        console.log('Drop Event', row, column)
+        const newGrid = gridState.slice();
+        const node = newGrid[row][column];
+
+        node.isStart = true;
+
+        setGridState(newGrid);
+
+        // console.log('Drop Event', row, column)
     }
     
 

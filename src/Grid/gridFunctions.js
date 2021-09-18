@@ -45,7 +45,6 @@ function getAllNodes (grid) {   // Gets all of the individual nodes in a grid
 
 
 
-
 function getGridWithToggledWall (grid, row, column) {
     const newGrid = grid.slice();
     const node = newGrid[row][column];
@@ -61,6 +60,14 @@ function getGridWithToggledWall (grid, row, column) {
 
     return newGrid;
 }
+
+
+// function getGridWithNewPoint (grid, row, column) {
+//     const newGrid = grid.slice();
+//     const node = newGrid[row][column];
+
+
+// }
 
 
 export { setUpGrid, getGridWithToggledWall, getAllNodes }   // Function exports
