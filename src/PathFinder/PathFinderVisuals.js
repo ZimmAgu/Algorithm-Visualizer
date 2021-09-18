@@ -101,20 +101,31 @@ function PathFinder () {
         event.preventDefault();
     }
 
+    function handleDragEndEvent () {
+        setMousePressedState(false)
+
+
+        if (startNodeDragState === true) {
+            gridState[5][5].isStart = true;
+        }
+
+        if (endNodeDragState === true) {
+            gridState[5][20].isEnd = true;
+        }
+    }
+
     function handleDropEvent (row, column) {
         setMousePressedState(false);
 
         const newGrid = gridState.slice();
         const node = newGrid[row][column];
         
-        if (startNodeDragState === true) {
-            console.log(node)
+        if (startNodeDragState === true) {  // If the start node is being dragged, then the node being dropped on is now the start node
             node.isStart = true;   
             setStartNodeDragState(false);
         }
 
-        if (endNodeDragState === true) {
-            console.log(node)
+        if (endNodeDragState === true) {    // If the end node is being dragged, then the node being dropped on is now the end node
             node.isEnd = true;   
             setEndNodeDragState(false);
         }
@@ -174,6 +185,10 @@ function PathFinder () {
 
                                             dragOverEventHandler={(event) => {
                                                 handleDragOver(event)
+                                            }}
+
+                                            dragEndEventHandler={() => {
+                                                handleDragEndEvent(row, column);
                                             }}
 
                                             dropEventHandler={(row, column) => {
