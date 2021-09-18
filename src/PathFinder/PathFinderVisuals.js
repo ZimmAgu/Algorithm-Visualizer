@@ -48,7 +48,6 @@ function PathFinder () {
             return;
         }
         
-
         const updatedGrid = getGridWithToggledWall(gridState, row, column)
         setGridState(updatedGrid)
 
@@ -74,13 +73,12 @@ function PathFinder () {
         })
     }
 
-    function handleDragStartEvent (row, column) {
 
+    function handleDragStartEvent (row, column) {
         const newGrid = gridState.slice();
         const node = newGrid[row][column];
 
         if (node.isStart) {
-            // console.log(node)
             node.isStart = false;
         }
         
@@ -95,9 +93,11 @@ function PathFinder () {
     }
 
     function handleDropEvent (row, column) {
+        setMousePressedState(false);
+
         const newGrid = gridState.slice();
         const node = newGrid[row][column];
-
+        
         node.isStart = true;
 
         setGridState(newGrid);
