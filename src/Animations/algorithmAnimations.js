@@ -18,17 +18,18 @@ function visualizeDijkstra (grid) { // Retrieves both the shortest nodes in orde
     const nodes = getAllNodes(grid);
 
     let startNode = grid[START_NODE_ROW][START_NODE_COLUMN];
+    let endNode = grid[END_NODE_ROW][END_NODE_COLUMN];
 
     nodes.forEach(node => {
         if (node.isStart) {
             startNode = grid[node.row][node.column]
         }
+
+        if (node.isEnd) {
+            console.log(node)
+            endNode = grid[node.row][node.column]
+        }
     })
-
-    
-    
-
-    const endNode = grid[END_NODE_ROW][END_NODE_COLUMN];
 
     const visitedNodesInOrder = dijkstra(grid, startNode, endNode)
     const shortestPath = getShortestPath(endNode);

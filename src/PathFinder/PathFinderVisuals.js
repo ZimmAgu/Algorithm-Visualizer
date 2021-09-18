@@ -21,6 +21,9 @@ import { visualizeDijkstra } from '../Animations/algorithmAnimations.js';
 function PathFinder () {
     const [gridState, setGridState] = useState([]);
     const [mousePressedState, setMousePressedState] = useState(false);
+    const [startNodeDragState, setStartNodeDragState] = useState(false);
+    const [endNodeDragState, setEndNodeDragState] = useState(false);
+
 
 
     useEffect(() => {
@@ -79,7 +82,13 @@ function PathFinder () {
         const node = newGrid[row][column];
 
         if (node.isStart) {
+            setStartNodeDragState(true);
             node.isStart = false;
+        }
+
+        if (node.isEnd) {
+            setEndNodeDragState(true);
+            node.isEnd = false;
         }
         
         setGridState(newGrid);
@@ -98,7 +107,18 @@ function PathFinder () {
         const newGrid = gridState.slice();
         const node = newGrid[row][column];
         
-        node.isStart = true;
+        if (startNodeDragState === true) {
+            console.log(node)
+            node.isStart = true;   
+            setStartNodeDragState(false);
+        }
+
+        if (endNodeDragState === true) {
+            console.log(node)
+            node.isEnd = true;   
+            setEndNodeDragState(false);
+        }
+        
 
         setGridState(newGrid);
 
