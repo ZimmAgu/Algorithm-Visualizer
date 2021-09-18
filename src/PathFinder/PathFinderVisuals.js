@@ -106,12 +106,14 @@ function PathFinder () {
 
         const newGrid = gridState.slice();
 
-        if (startNodeDragState === true) {
+        if (startNodeDragState === true) {  // If the user drags the start node off of the screen, it will automatically snap back to its default position  
+            newGrid[5][5].isWall = false;
             newGrid[5][5].isStart = true;
             setStartNodeDragState(false);
         }
 
-        if (endNodeDragState === true) {
+        if (endNodeDragState === true) { // If the user drags the end node off of the screen, it will automatically snap back to its default position 
+            newGrid[5][20].isWall = false;
             newGrid[5][20].isEnd = true;
             setEndNodeDragState(false);
         }
