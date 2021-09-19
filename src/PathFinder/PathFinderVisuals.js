@@ -134,11 +134,18 @@ function PathFinder () {
 
     function makeSureStartandEndNeverOverlap (gridState) {
         const nodes = getAllNodes(gridState);
+
         
         for (let i = 0; i < nodes.length; i++ ) { 
             if (nodes[i].isStart && nodes[i].isEnd) {   // If a start node is placed over an end node, the end node will move over by 2 spaces
                 nodes[i].isEnd = false;
-                nodes[i + 2].isEnd = true;
+                
+                if (nodes[i + 2] === undefined) {   // If the end node is about to get sent off the graph
+                    nodes[2].isEnd = true;
+                } else {
+                    nodes[i + 2].isEnd = true; 
+                }
+                
             }
         }
     }
