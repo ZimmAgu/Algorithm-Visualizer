@@ -36,6 +36,7 @@ function PathFinder () {
 
     useEffect(() => {
         setDraggableObjects(gridState);
+        makeSureStartandEndNeverOverlap(gridState);
     })
 
 
@@ -62,19 +63,6 @@ function PathFinder () {
         setMousePressedState(false);
         // console.log('Mouse up event')
     } 
-
-
-    function setDraggableObjects (gridState) {
-        const nodes = getAllNodes(gridState);
-        
-        nodes.forEach(node => {
-            const currentNode = document.getElementById(`node-${node.row}-${node.column}`);
-
-            if (node.isStart || node.isEnd) {   // The starting and the ending nodes are draggable
-                currentNode.draggable = true;
-            }
-        })
-    }
 
 
     function handleDragStartEvent (row, column) {
@@ -142,8 +130,32 @@ function PathFinder () {
 
         // console.log('Drop Event', row, column)
     }
+
+
+    function makeSureStartandEndNeverOverlap (gridState) {
+        const nodes = getAllNodes(gridState);
+        
+        for (let i = 0; i < nodes.length; i++ ) { 
+            if (nodes[i].isStart && nodes[i].isEnd) {   // If a start node is placed over an end node, the end node will move over by 2 spaces
+                nodes[i].isEnd = false;
+                nodes[i + 2].isEnd = true;
+            }
+        }
+    }
     
 
+
+    function setDraggableObjects (gridState) {
+        const nodes = getAllNodes(gridState);
+        
+        nodes.forEach(node => {
+            const currentNode = document.getElementById(`node-${node.row}-${node.column}`);
+
+            if (node.isStart || node.isEnd) {   // The starting and the ending nodes are draggable
+                currentNode.draggable = true;
+            }
+        })
+    }
     return (
         <>
             <button onClick={() => visualizeDijkstra(gridState)}>
