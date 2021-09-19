@@ -1,8 +1,13 @@
-import PathFinder from "./PathFinder/PathFinderVisuals";
+import PathFinder from "./PathFinder/PathFinderVisuals.js";
+import NavigationBar from "./WebPresentation/NavigationBar.js";
+import 'bootstrap/dist/css/bootstrap.min.css';
 
 function App () {
   return (
-    <PathFinder></PathFinder>
+    <>
+      <NavigationBar></NavigationBar>
+      <PathFinder></PathFinder>
+    </>
   );
 }
 
