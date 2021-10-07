@@ -12,6 +12,7 @@ import Node from './Node.js'
 
 // Visuals Imports
 import { visualizeDijkstra } from '../Animations/algorithmAnimations.js';
+import NavigationBar from '../WebPresentation/NavigationBar';
 
 
 
@@ -36,7 +37,7 @@ function PathFinder () {
 
     useEffect(() => {
         setDraggableObjects(gridState);
-        makeSureStartandEndNeverOverlap(gridState);
+        make_Sure_Start_and_End_Never_Overlap(gridState);
         make_Sure_Start_and_End_Are_Not_Walls(gridState)
     })
 
@@ -133,7 +134,7 @@ function PathFinder () {
     }
 
 
-    function makeSureStartandEndNeverOverlap (gridState) {
+    function make_Sure_Start_and_End_Never_Overlap (gridState) {
         const nodes = getAllNodes(gridState);
 
         
@@ -181,9 +182,8 @@ function PathFinder () {
     }
     return (
         <>
-            <button onClick={() => visualizeDijkstra(gridState)}>
-                Visualize Dijkstra's Algorithm
-            </button>
+            <NavigationBar gridState={gridState}></NavigationBar>
+
             <div className="grid">
                 {gridState.map((row, rowId) => {
                     return (
