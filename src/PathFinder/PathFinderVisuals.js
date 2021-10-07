@@ -37,6 +37,7 @@ function PathFinder () {
     useEffect(() => {
         setDraggableObjects(gridState);
         makeSureStartandEndNeverOverlap(gridState);
+        make_Sure_Start_and_End_Are_Not_Walls(gridState)
     })
 
 
@@ -146,6 +147,21 @@ function PathFinder () {
                     nodes[i + 2].isEnd = true; 
                 }
                 
+            }
+        }
+    }
+
+
+    function make_Sure_Start_and_End_Are_Not_Walls (gridState) {
+        const nodes = getAllNodes(gridState);
+
+        for (let i = 0; i < nodes.length; i++ ) { 
+            if (nodes[i].isStart && nodes[i].isWall) { 
+                nodes[i].isWall = false;
+            }
+
+            if (nodes[i].isEnd && nodes[i].isWall) { 
+                nodes[i].isWall = false;
             }
         }
     }
