@@ -1,14 +1,13 @@
 import React from 'react'
 
-// Grdi Imports
+// Grid Imports
 import { START_NODE_ROW, START_NODE_COLUMN, END_NODE_ROW, END_NODE_COLUMN } from '../Grid/gridFunctions.js'
 
 import { Button, Container, Dropdown, Navbar } from 'react-bootstrap';
 import { visualizeDijkstra } from '../Animations/algorithmAnimations';
 
 
-import { useState, useEffect, useRef } from 'react';
-import dijkstra from '../Algorithms/dijkstra';
+import { useState } from 'react';
 import { getAllNodes } from '../Grid/gridFunctions.js';
 
 

@@ -3,7 +3,7 @@ import React from 'react'
 // CSS Imports
 import './PathFinderVisuals.css'
 
-// Grdi Imports
+// Grid Imports
 import { START_NODE_ROW, START_NODE_COLUMN, END_NODE_ROW, END_NODE_COLUMN } from '../Grid/gridFunctions.js'
 
 // Hook Imports
@@ -38,6 +38,7 @@ function PathFinder () {
         setGridState(grid);
     }, [])
 
+
     useEffect(() => {
         setDraggableObjects(gridState);
         make_Sure_Start_and_End_Never_Overlap(gridState);
@@ -52,6 +53,7 @@ function PathFinder () {
         // console.log('Mouse down event', row, column)
     } 
     
+
     function handleMouseEnterEvent (row, column) {
         if (!mousePressedState) {
             return;
@@ -183,6 +185,8 @@ function PathFinder () {
             }
         })
     }
+
+    
     return (
         <>
             <NavigationBar gridState={gridState} setGridState={setGridState}></NavigationBar>
