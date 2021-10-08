@@ -18,12 +18,25 @@ function NavigationBar (props) {
 
 
     function handleVisualizeButton () {
+        
         if (currentAlgorithm == null) {
             setNavButtonText('Choose an Algorithm')
         }
 
-        if (currentAlgorithm == 'dijkstra') {
-            visualizeDijkstra(props.gridState)  
+        if (currentAlgorithm === 'dijkstra') {
+            visualizeDijkstra(props.gridState)
+
+            const visitedNodes = visualizeDijkstra(props.gridState).length
+
+            props.setAlgorithmInProgress(true)
+
+            for (let i = 0; i <= visitedNodes; i++) {
+                if (i === visitedNodes) {
+                    setTimeout(() =>{
+                        props.setAlgorithmInProgress(false)
+                    }, 50 * i)
+                }
+            }    
         }
     }
 
@@ -31,40 +44,47 @@ function NavigationBar (props) {
         const newGrid = props.gridState.slice();
         const nodes = getAllNodes(newGrid);
 
-        nodes.forEach(node => {
-            const currentNode = document.getElementById(`node-${node.row}-${node.column}`);
-                
-            node.isWall = false;
-            currentNode.classList.remove('wall')
-        })
+        if (props.algorithmInProgress != true) { // Makes sure walls can only be cleared in an algorithm is not running
+            nodes.forEach(node => {
+                const currentNode = document.getElementById(`node-${node.row}-${node.column}`);
+                    
+                node.isWall = false;
+                currentNode.classList.remove('wall')
+            })
+        }
     }
 
 
     function handleBoardReset () { // Resets the board back to it's initial state
+        
         const newGrid = props.gridState.slice();
         const nodes = getAllNodes(newGrid);
-        handleWallClearing()
 
-        nodes.forEach(node => { 
-            const currentNode = document.getElementById(`node-${node.row}-${node.column}`);
-            
-            node.visited = false;
-            currentNode.classList.remove('visited')
-            currentNode.classList.remove('shortestPathNode')
+        if (props.algorithmInProgress != true) { // Makes sure the board can only be reset when an algorithm is not running
+            handleWallClearing()
 
-            if (node.isStart) {
-                node.isStart = false;
-                newGrid[START_NODE_ROW][START_NODE_COLUMN].isStart = true;
-            }
+            nodes.forEach(node => { 
+                const currentNode = document.getElementById(`node-${node.row}-${node.column}`);
+                
+                node.visited = false;
+                currentNode.classList.remove('visited')
+                currentNode.classList.remove('shortestPathNode')
 
-            if (node.isEnd) {
-                node.isEnd = false;
-                newGrid[END_NODE_ROW][END_NODE_COLUMN].isEnd = true;
-            }
+                if (node.isStart) {
+                    node.isStart = false;
+                    newGrid[START_NODE_ROW][START_NODE_COLUMN].isStart = true;
+                }
 
-        })
+                if (node.isEnd) {
+                    node.isEnd = false;
+                    newGrid[END_NODE_ROW][END_NODE_COLUMN].isEnd = true;
+                }
 
-        props.setGridState(newGrid)
+            })
+
+            props.setGridState(newGrid)
+        }
+        
     }
 
 

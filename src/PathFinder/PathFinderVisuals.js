@@ -14,7 +14,6 @@ import { setUpGrid, getGridWithToggledWall, getAllNodes } from '../Grid/gridFunc
 import Node from './Node.js'
 
 // Visuals Imports
-import { visualizeDijkstra } from '../Animations/algorithmAnimations.js';
 import NavigationBar from '../WebPresentation/NavigationBar';
 
 
@@ -22,11 +21,12 @@ import NavigationBar from '../WebPresentation/NavigationBar';
 
 
 
-function PathFinder () {
+function PathFinder (props) {
     const [gridState, setGridState] = useState([]);
     const [mousePressedState, setMousePressedState] = useState(false);
     const [startNodeDragState, setStartNodeDragState] = useState(false);
     const [endNodeDragState, setEndNodeDragState] = useState(false);
+    const [algorithmInProgress, setAlgorithmInProgress] = useState(false);
 
 
 
@@ -189,7 +189,12 @@ function PathFinder () {
     
     return (
         <>
-            <NavigationBar gridState={gridState} setGridState={setGridState}></NavigationBar>
+            <NavigationBar 
+                gridState={gridState} 
+                setGridState={setGridState}
+                algorithmInProgress={algorithmInProgress}
+                setAlgorithmInProgress={setAlgorithmInProgress}
+            ></NavigationBar>
 
             <div className="grid">
                 {gridState.map((row, rowId) => {

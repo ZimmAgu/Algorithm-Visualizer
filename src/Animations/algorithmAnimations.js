@@ -20,13 +20,12 @@ function visualizeDijkstra (grid) { // Retrieves both the shortest nodes in orde
     let startNode = grid[START_NODE_ROW][START_NODE_COLUMN];
     let endNode = grid[END_NODE_ROW][END_NODE_COLUMN];
 
-    nodes.forEach(node => {
+    nodes.forEach(node => { // Defines the start and end node variables that will be passed into the dijkstra function 
         if (node.isStart) {
             startNode = grid[node.row][node.column]
         }
 
         if (node.isEnd) {
-            console.log(node)
             endNode = grid[node.row][node.column]
         }
     })
@@ -35,12 +34,13 @@ function visualizeDijkstra (grid) { // Retrieves both the shortest nodes in orde
     const shortestPath = getShortestPath(endNode);
 
     animateDijkstra(visitedNodesInOrder, shortestPath)
+
+    return visitedNodesInOrder  // I return the visited nodes in order because I need to use it in other components as well
 }
 
 
 
 function animateDijkstra (visitedNodesInOrder, shortestPath) {
-    
     for (let i = 0; i <= visitedNodesInOrder.length; i++) {
         if (i === visitedNodesInOrder.length) {
             setTimeout(() =>{
@@ -52,6 +52,8 @@ function animateDijkstra (visitedNodesInOrder, shortestPath) {
 
     animateNeighborVisitation(visitedNodesInOrder);
 }
+
+
 
 
 
