@@ -3,6 +3,9 @@ import React from 'react'
 // CSS Imports
 import './PathFinderVisuals.css'
 
+// Grdi Imports
+import { START_NODE_ROW, START_NODE_COLUMN, END_NODE_ROW, END_NODE_COLUMN } from '../Grid/gridFunctions.js'
+
 // Hook Imports
 import { useEffect, useState } from 'react';
 
@@ -97,14 +100,14 @@ function PathFinder () {
         const newGrid = gridState.slice();
 
         if (startNodeDragState === true) {  // If the user drags the start node off of the screen, it will automatically snap back to its default position  
-            newGrid[5][5].isWall = false;
-            newGrid[5][5].isStart = true;
+            newGrid[START_NODE_ROW][START_NODE_COLUMN].isWall = false;
+            newGrid[START_NODE_ROW][START_NODE_COLUMN].isStart = true;
             setStartNodeDragState(false);
         }
 
         if (endNodeDragState === true) { // If the user drags the end node off of the screen, it will automatically snap back to its default position 
-            newGrid[5][20].isWall = false;
-            newGrid[5][20].isEnd = true;
+            newGrid[END_NODE_ROW][END_NODE_COLUMN].isWall = false;
+            newGrid[END_NODE_ROW][END_NODE_COLUMN].isEnd = true;
             setEndNodeDragState(false);
         }
 
@@ -182,7 +185,7 @@ function PathFinder () {
     }
     return (
         <>
-            <NavigationBar gridState={gridState}></NavigationBar>
+            <NavigationBar gridState={gridState} setGridState={setGridState}></NavigationBar>
 
             <div className="grid">
                 {gridState.map((row, rowId) => {

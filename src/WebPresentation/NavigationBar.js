@@ -1,6 +1,12 @@
 import React from 'react'
+
+// Grdi Imports
+import { START_NODE_ROW, START_NODE_COLUMN, END_NODE_ROW, END_NODE_COLUMN } from '../Grid/gridFunctions.js'
+
 import { Button, Container, Dropdown, Navbar } from 'react-bootstrap';
 import { visualizeDijkstra } from '../Animations/algorithmAnimations';
+
+
 import { useState, useEffect, useRef } from 'react';
 import dijkstra from '../Algorithms/dijkstra';
 import { getAllNodes } from '../Grid/gridFunctions.js';
@@ -14,7 +20,7 @@ function NavigationBar (props) {
 
     function handleVisualizeButton () {
         if (currentAlgorithm == null) {
-            setNavButtonText('Choose An Algorithm')
+            setNavButtonText('Choose an Algorithm')
         }
 
         if (currentAlgorithm == 'dijkstra') {
@@ -23,7 +29,8 @@ function NavigationBar (props) {
     }
 
     function handleWallClearing () { // Sets wall object for wall nodes to false and removes wall CSS
-        const nodes = getAllNodes(props.gridState);
+        const newGrid = props.gridState.slice();
+        const nodes = getAllNodes(newGrid);
 
         nodes.forEach(node => {
             const currentNode = document.getElementById(`node-${node.row}-${node.column}`);
@@ -34,8 +41,9 @@ function NavigationBar (props) {
     }
 
 
-    function handleBoardReset () { 
-        const nodes = getAllNodes(props.gridState);
+    function handleBoardReset () { // Resets the board back to it's initial state
+        const newGrid = props.gridState.slice();
+        const nodes = getAllNodes(newGrid);
         handleWallClearing()
 
         nodes.forEach(node => { 
@@ -43,11 +51,21 @@ function NavigationBar (props) {
             
             node.visited = false;
             currentNode.classList.remove('visited')
-
             currentNode.classList.remove('shortestPathNode')
 
-            
+            if (node.isStart) {
+                node.isStart = false;
+                newGrid[START_NODE_ROW][START_NODE_COLUMN].isStart = true;
+            }
+
+            if (node.isEnd) {
+                node.isEnd = false;
+                newGrid[END_NODE_ROW][END_NODE_COLUMN].isEnd = true;
+            }
+
         })
+
+        props.setGridState(newGrid)
     }
 
 
