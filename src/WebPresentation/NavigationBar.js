@@ -86,8 +86,8 @@ function NavigationBar (props) {
                     newGrid[END_NODE_ROW][END_NODE_COLUMN].isEnd = true;
                     
                     props.setGridState(newGrid)
-                    // setCurrentAlgorithm(null)
-                    // setNavButtonText('Visualize')
+                    setCurrentAlgorithm(null)
+                    setNavButtonText('Visualize')
                 }
             })
            

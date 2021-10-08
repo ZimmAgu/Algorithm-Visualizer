@@ -47,9 +47,12 @@ function PathFinder (props) {
 
 
     function handleMouseDownEvent (row, column) {
-        const updatedGrid = getGridWithToggledWall(gridState, row, column)
-        setGridState(updatedGrid)
-        setMousePressedState(true);
+        if (algorithmInProgress !== true) {
+            const updatedGrid = getGridWithToggledWall(gridState, row, column)
+            setGridState(updatedGrid)
+            setMousePressedState(true);
+        }  
+        
         // console.log('Mouse down event', row, column)
     } 
     
@@ -76,14 +79,16 @@ function PathFinder (props) {
         const newGrid = gridState.slice();
         const node = newGrid[row][column];
 
-        if (node.isStart) {
-            setStartNodeDragState(true);
-            node.isStart = false;
-        }
+        if (algorithmInProgress !== true) {
+            if (node.isStart) {
+                setStartNodeDragState(true);
+                node.isStart = false;
+            }
 
-        if (node.isEnd) {
-            setEndNodeDragState(true);
-            node.isEnd = false;
+            if (node.isEnd) {
+                setEndNodeDragState(true);
+                node.isEnd = false;
+            }
         }
         
         setGridState(newGrid);
