@@ -1,5 +1,5 @@
 const GRID_ROW_LENGTH = 15;
-const GRID_COL_LENGTH = 30;
+const GRID_COL_LENGTH = 35;
 
 const START_NODE_ROW = 5;
 const START_NODE_COLUMN = 5;

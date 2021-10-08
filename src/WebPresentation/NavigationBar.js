@@ -3,19 +3,54 @@ import { Button, Container, Dropdown, Navbar } from 'react-bootstrap';
 import { visualizeDijkstra } from '../Animations/algorithmAnimations';
 import { useState, useEffect, useRef } from 'react';
 import dijkstra from '../Algorithms/dijkstra';
+import { getAllNodes } from '../Grid/gridFunctions.js';
 
 
 
 function NavigationBar (props) {
     const [currentAlgorithm, setCurrentAlgorithm] = useState(null);
-    const [navButtonText, setNavButtonText] = useState('Choose your Algorithm');
+    const [navButtonText, setNavButtonText] = useState('Visualize');
 
 
-    function handleButtonClick () {
+    function handleVisualizeButton () {
+        if (currentAlgorithm == null) {
+            setNavButtonText('Choose An Algorithm')
+        }
+
         if (currentAlgorithm == 'dijkstra') {
             visualizeDijkstra(props.gridState)  
         }
     }
+
+    function handleWallClearing () { // Sets wall object for wall nodes to false and removes wall CSS
+        const nodes = getAllNodes(props.gridState);
+
+        nodes.forEach(node => {
+            const currentNode = document.getElementById(`node-${node.row}-${node.column}`);
+                
+            node.isWall = false;
+            currentNode.classList.remove('wall')
+        })
+    }
+
+
+    function handleBoardReset () { 
+        const nodes = getAllNodes(props.gridState);
+        handleWallClearing()
+
+        nodes.forEach(node => { 
+            const currentNode = document.getElementById(`node-${node.row}-${node.column}`);
+            
+            node.visited = false;
+            currentNode.classList.remove('visited')
+
+            currentNode.classList.remove('shortestPathNode')
+
+            
+        })
+    }
+
+
 
     function handleDijkstraDropdown () {
         setCurrentAlgorithm('dijkstra')
@@ -27,9 +62,20 @@ function NavigationBar (props) {
             <Navbar expand="lg" bg="dark" variant="dark">
                 <Container>
                     <Navbar.Brand href="">Algorithm Visualizer</Navbar.Brand>
-                    <button onClick={handleButtonClick}>{navButtonText}</button>
+
+                    <Button onClick={handleVisualizeButton}>{navButtonText}</Button>
+
+
+                    <Button variant="secondary" onClick={handleBoardReset}>
+                        Reset Board
+                    </Button>
+
+                    <Button variant="secondary" onClick={handleWallClearing}>
+                        Clear Walls
+                    </Button>
+
                     <Dropdown>
-                        <Dropdown.Toggle variant="success" id="dropdown-basic">
+                        <Dropdown.Toggle variant="dark" id="dropdown-basic">
                             Algorithms
                         </Dropdown.Toggle>
 
