@@ -4,8 +4,7 @@ import React from 'react'
 import { START_NODE_ROW, START_NODE_COLUMN, END_NODE_ROW, END_NODE_COLUMN } from '../Grid/gridFunctions.js'
 
 import { Button, Container, Dropdown, Navbar } from 'react-bootstrap';
-import { visualizeDijkstra } from '../Animations/algorithmAnimations';
-
+import { visualizeDijkstra, visualizeDFS } from '../Animations/algorithmAnimations';
 
 import { useState } from 'react';
 import { getAllNodes } from '../Grid/gridFunctions.js';
@@ -18,7 +17,6 @@ function NavigationBar (props) {
 
 
     function handleVisualizeButton () {
-        debugger;
         if (currentAlgorithm == null) {
             setNavButtonText('Choose an Algorithm')
         }
@@ -41,6 +39,11 @@ function NavigationBar (props) {
                     }, 50 * i)
                 }
             }    
+        }
+
+
+        if (currentAlgorithm === 'DFS') {
+            visualizeDFS(props.gridState)
         }
     }
 
@@ -66,7 +69,6 @@ function NavigationBar (props) {
 
         
             nodes.forEach(node => { 
-                console.log(node)
                 const currentNode = document.getElementById(`node-${node.row}-${node.column}`);
                 
                 if (props.algorithmInProgress !== true) { // Makes sure the board can only be reset when an algorithm is not running
@@ -102,6 +104,12 @@ function NavigationBar (props) {
         setNavButtonText('Visualize Dijkstras Algorithm')
     }
 
+
+    function handleDFSDropdown () {
+        setCurrentAlgorithm('DFS')
+        setNavButtonText('Visualize Depth First Search Algorithm')
+    }
+
     return (
         <>
             <Navbar expand="lg" bg="dark" variant="dark">
@@ -126,7 +134,7 @@ function NavigationBar (props) {
 
                         <Dropdown.Menu>
                             <Dropdown.Item onClick={handleDijkstraDropdown}>Dijkstra</Dropdown.Item>
-                            <Dropdown.Item href="">Another action</Dropdown.Item>
+                            <Dropdown.Item onClick={handleDFSDropdown}>Depth First Search</Dropdown.Item>
                             <Dropdown.Item href="">Something else</Dropdown.Item>
                         </Dropdown.Menu>
                     </Dropdown>

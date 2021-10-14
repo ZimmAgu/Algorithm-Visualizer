@@ -2,6 +2,7 @@
 
 // Algorithms Imports
 import dijkstra, {getShortestPath} from '../Algorithms/dijkstra.js';
+import depthFirstSearch from '../Algorithms/depthFirstSearch.js';
 
 // Animations Imports
 import { ANIMATION_SPEED, animateShortestPath, animateNeighborVisitation } from './universalAnimations.js';
@@ -54,8 +55,24 @@ function animateDijkstra (visitedNodesInOrder, shortestPath) {
 }
 
 
+function visualizeDFS (grid) {
+    const nodes = getAllNodes(grid);
+
+    let startNode = grid[START_NODE_ROW][START_NODE_COLUMN];
+    let endNode = grid[END_NODE_ROW][END_NODE_COLUMN];
+
+    nodes.forEach(node => { // Defines the start and end node variables that will be passed into the dijkstra function 
+        if (node.isStart) {
+            startNode = grid[node.row][node.column]
+        }
+
+        if (node.isEnd) {
+            endNode = grid[node.row][node.column]
+        }
+    })
+
+    depthFirstSearch(grid, startNode, endNode)
+}
 
 
-
-
-export { visualizeDijkstra };
+export { visualizeDijkstra, visualizeDFS };
