@@ -125,5 +125,5 @@ function getShortestPath (endNode) {
 
 
 export default dijkstra;
-export {getShortestPath};
+export { getShortestPath, setInitialNodes, sortNodesByDistance, getUnvisitedNeighbors, updateUnvisitedNeighbors };
 
