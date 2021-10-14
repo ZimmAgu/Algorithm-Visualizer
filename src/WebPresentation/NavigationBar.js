@@ -38,36 +38,7 @@ function NavigationBar (props) {
 
     function handleBoardReset () { // Resets the board back to it's initial state
         
-        const newGrid = props.gridState.slice();
-        const nodes = getAllNodes(newGrid);
-
-        
-            nodes.forEach(node => { 
-                const currentNode = document.getElementById(`node-${node.row}-${node.column}`);
-                
-                if (props.algorithmInProgress !== true) { // Makes sure the board can only be reset when an algorithm is not running
-                    node.isStart = false;
-                    node.isEnd = false;
-                    node.visited = false;
-                    node.isWall = false;
-                    node.previousNode = null;
-
-
-                    currentNode.classList.remove('visited')
-                    currentNode.classList.remove('shortestPathNode')
-                    currentNode.classList.remove('wall')
-                
-                
-                    newGrid[START_NODE_ROW][START_NODE_COLUMN].isStart = true;
-                    newGrid[END_NODE_ROW][END_NODE_COLUMN].isEnd = true;
-                    
-                    props.setGridState(newGrid)
-                    setCurrentAlgorithm(null)
-                    setNavButtonText('Visualize')
-                }
-            })
-           
-        
+        resetBoard(props, setCurrentAlgorithm, setNavButtonText)
         
     }
 
@@ -143,6 +114,40 @@ function runDijkstra (props) {
             }, 50 * i)
         }
     }    
+}
+
+
+
+
+function resetBoard (props, setCurrentAlgorithm, setNavButtonText) {
+    const newGrid = props.gridState.slice();
+    const nodes = getAllNodes(newGrid);
+
+    
+    nodes.forEach(node => { 
+        const currentNode = document.getElementById(`node-${node.row}-${node.column}`);
+        
+        if (props.algorithmInProgress !== true) { // Makes sure the board can only be reset when an algorithm is not running
+            node.isStart = false;
+            node.isEnd = false;
+            node.visited = false;
+            node.isWall = false;
+            node.previousNode = null;
+
+
+            currentNode.classList.remove('visited')
+            currentNode.classList.remove('shortestPathNode')
+            currentNode.classList.remove('wall')
+        
+        
+            newGrid[START_NODE_ROW][START_NODE_COLUMN].isStart = true;
+            newGrid[END_NODE_ROW][END_NODE_COLUMN].isEnd = true;
+            
+            props.setGridState(newGrid)
+            setCurrentAlgorithm(null)
+            setNavButtonText('Visualize')
+        }
+    })
 }
 
 
