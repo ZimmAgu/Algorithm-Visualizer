@@ -22,23 +22,7 @@ function NavigationBar (props) {
         }
 
         if (currentAlgorithm === 'dijkstra') {
-            
-            props.setAlgorithmInProgress(true)
-            
-            visualizeDijkstra(props.gridState)
-
-            const visitedNodes = visualizeDijkstra(props.gridState).length
-
-            // console.log(visualizeDijkstra(props.gridState).length)
-            
-
-            for (let i = 0; i <= visitedNodes; i++) {
-                if (i === visitedNodes) {
-                    setTimeout(() =>{
-                        props.setAlgorithmInProgress(false)
-                    }, 50 * i)
-                }
-            }    
+            runDijkstra(props)   
         }
 
 
@@ -48,17 +32,7 @@ function NavigationBar (props) {
     }
 
     function handleWallClearing () { // Sets wall object for wall nodes to false and removes wall CSS
-        const newGrid = props.gridState.slice();
-        const nodes = getAllNodes(newGrid);
-
-        if (props.algorithmInProgress !== true) { // Makes sure walls can only be cleared in an algorithm is not running
-            nodes.forEach(node => {
-                const currentNode = document.getElementById(`node-${node.row}-${node.column}`);
-                    
-                node.isWall = false;
-                currentNode.classList.remove('wall')
-            })
-        }
+        clearWalls(props)
     }
 
 
@@ -109,6 +83,9 @@ function NavigationBar (props) {
         setCurrentAlgorithm('DFS')
         setNavButtonText('Visualize Depth First Search Algorithm')
     }
+    
+
+
 
     return (
         <>
@@ -143,5 +120,50 @@ function NavigationBar (props) {
         </>
     )
 }
+
+
+
+
+
+
+function runDijkstra (props) {
+    props.setAlgorithmInProgress(true)
+            
+    visualizeDijkstra(props.gridState)
+
+    const visitedNodes = visualizeDijkstra(props.gridState).length
+
+    // console.log(visualizeDijkstra(props.gridState).length)
+    
+
+    for (let i = 0; i <= visitedNodes; i++) {
+        if (i === visitedNodes) {
+            setTimeout(() =>{
+                props.setAlgorithmInProgress(false)
+            }, 50 * i)
+        }
+    }    
+}
+
+
+
+
+
+function clearWalls (props) {
+    const newGrid = props.gridState.slice();
+    const nodes = getAllNodes(newGrid);
+
+    if (props.algorithmInProgress !== true) { // Makes sure walls can only be cleared in an algorithm is not running
+        nodes.forEach(node => {
+            const currentNode = document.getElementById(`node-${node.row}-${node.column}`);
+                
+            node.isWall = false;
+            currentNode.classList.remove('wall')
+        })
+    }
+}
+
+
+
 
 export default NavigationBar
