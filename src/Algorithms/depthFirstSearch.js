@@ -24,7 +24,7 @@ function depthFirstSearch (graph, startNode, endNode) {
             return visitedNodesInOrder;
         }
 
-        if (currentVertex == endNode) {
+        if (currentVertex == endNode) { // Once the function has reached the endnode, all of the nodes in order of when we visited them will be returned. this is the goal
             return visitedNodesInOrder
         }
 
@@ -44,6 +44,10 @@ function depthFirstSearch (graph, startNode, endNode) {
 
 
         updateUnvisitedNeighbors(currentVertex, graph)
+    }
+
+    if (!visitedNodesInOrder.includes(endNode)) {   // At the end of the function, if it is impossible to reach the end node, return the nodes we have
+        return visitedNodesInOrder
     }
 }
 
