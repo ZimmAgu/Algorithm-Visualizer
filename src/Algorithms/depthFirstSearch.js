@@ -13,25 +13,33 @@ function depthFirstSearch (graph, startNode, endNode) {
     stack.push(startNode)
 
     const visitedNodesInOrder = []
-
     while (!!stack.length) {
-        const currentVertex = stack.pop()
+        const currentVertex = stack.pop()   // The vertex on top of the stack is what is being valuated
 
+        if (currentVertex.isWall) {   // If you get to a wall then skip it
+            continue;
+        }
+
+        if (currentVertex.distance === Infinity) {    // If the distance of the nearest neighbor is infinity something went wrong so the function should return the nodes we have
+            return visitedNodesInOrder;
+        }
 
         if (currentVertex == endNode) {
             console.log(visitedNodesInOrder)
             return visitedNodesInOrder
         }
 
-        if (currentVertex.visited == false) {
+        if (currentVertex.visited == false) {   // If the current vertex has not been visited yet, it is marked as visited
             currentVertex.visited = true
             visitedNodesInOrder.push(currentVertex)
         }
 
-        const neighbors = getAllNeighbors(currentVertex, graph)
+        const neighbors = getAllNeighbors(currentVertex, graph) // I then get all of the adjecent neighbors to the current vertex
 
-        neighbors.forEach(neighbor => {
+        neighbors.forEach(neighbor => { // If these neighbors are not visited, then they are added to the top of the stack and the function loops again
             if (neighbor.visited == false) {
+                console.log(currentVertex.distance)
+                neighbor.distance = (currentVertex.distance + 1)
                 stack.push(neighbor)
             }
         })
@@ -42,7 +50,14 @@ function depthFirstSearch (graph, startNode, endNode) {
 
 function setInitialNodes (nodes, startNode) {   // Sets initial values for the node properties in which the starting node will have a different value for every other node
     nodes.forEach(node => {
-        node.visited = false;
+        if (node == startNode) {
+            node.visited = false;
+            node.distance = 0
+        } else {
+            node.visited = false;
+            node.distance = Infinity
+        }
+        
     })
 }
 

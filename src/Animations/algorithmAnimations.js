@@ -75,7 +75,9 @@ function visualizeDFS (grid) {
         }
     })
 
-    depthFirstSearch(grid, startNode, endNode)
+    const visitedNodesInOrder = depthFirstSearch(grid, startNode, endNode)
+    const shortestPath = getShortestPath(endNode);
+    animateDijkstra(visitedNodesInOrder, shortestPath)
 }
 
 
