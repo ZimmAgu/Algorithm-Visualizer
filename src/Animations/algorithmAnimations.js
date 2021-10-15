@@ -42,6 +42,7 @@ function visualizeDijkstra (grid) { // Retrieves both the shortest nodes in orde
 
 
 function animateDijkstra (visitedNodesInOrder, shortestPath) {
+    console.log(visitedNodesInOrder)
     for (let i = 0; i <= visitedNodesInOrder.length; i++) {
         if (i === visitedNodesInOrder.length) {
             setTimeout(() =>{

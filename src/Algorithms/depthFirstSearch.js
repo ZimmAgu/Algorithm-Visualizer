@@ -25,7 +25,6 @@ function depthFirstSearch (graph, startNode, endNode) {
         }
 
         if (currentVertex == endNode) {
-            console.log(visitedNodesInOrder)
             return visitedNodesInOrder
         }
 
@@ -35,14 +34,16 @@ function depthFirstSearch (graph, startNode, endNode) {
         }
 
         const neighbors = getAllNeighbors(currentVertex, graph) // I then get all of the adjecent neighbors to the current vertex
+     
 
         neighbors.forEach(neighbor => { // If these neighbors are not visited, then they are added to the top of the stack and the function loops again
             if (neighbor.visited == false) {
-                console.log(currentVertex.distance)
-                neighbor.distance = (currentVertex.distance + 1)
                 stack.push(neighbor)
             }
         })
+
+
+        updateUnvisitedNeighbors(currentVertex, graph)
     }
 }
 
