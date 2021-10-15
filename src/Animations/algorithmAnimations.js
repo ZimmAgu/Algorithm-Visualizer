@@ -55,6 +55,10 @@ function animateDijkstra (visitedNodesInOrder, shortestPath) {
 }
 
 
+
+
+
+
 function visualizeDFS (grid) {
     const nodes = getAllNodes(grid);
 
