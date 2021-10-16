@@ -9,10 +9,11 @@ function depthFirstSearch (graph, startNode, endNode) {
     const unvisitedNodes = getAllNodes(graph);
     setInitialNodes(unvisitedNodes, startNode)
 
+    const visitedNodesInOrder = []
+
     const stack = []
     stack.push(startNode)
 
-    const visitedNodesInOrder = []
     while (!!stack.length) {
         const currentVertex = stack.pop()   // The vertex on top of the stack is what is being valuated
 
@@ -99,3 +100,4 @@ function getAllNeighbors (node, grid) {    // Gets the nearest unvisited neighbo
 
 
 export default depthFirstSearch;
+export { setInitialNodes }

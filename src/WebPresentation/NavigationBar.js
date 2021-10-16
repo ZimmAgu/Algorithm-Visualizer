@@ -5,6 +5,7 @@ import { Button, Container, Dropdown, Navbar } from 'react-bootstrap';
 // Algorithms Imports
 import dijkstra from '../Algorithms/dijkstra.js';
 import depthFirstSearch from '../Algorithms/depthFirstSearch.js';
+import breadthFirstSearch from '../Algorithms/breadthFirstSearch.js';
 import { visualizeAlgorithm } from '../Animations/algorithmAnimations';
 import { ANIMATION_SPEED } from '../Animations/universalAnimations.js';
 
@@ -31,6 +32,27 @@ function NavigationBar (props) {
         if (currentAlgorithm === 'DFS') {
             runCurrentAlgorithm(props, depthFirstSearch)   
         }
+
+
+        if (currentAlgorithm === 'BFS') {
+            const nodes = getAllNodes(props.gridState);
+
+            let startNode = props.gridState[START_NODE_ROW][START_NODE_COLUMN];
+            let endNode = props.gridState[END_NODE_ROW][END_NODE_COLUMN];
+
+
+            nodes.forEach(node => { // Defines the start and end node variables that will be passed into the dijkstra function 
+                if (node.isStart) {
+                    startNode = props.gridState[node.row][node.column]
+                }
+
+                if (node.isEnd) {
+                    endNode = props.gridState[node.row][node.column]
+                }
+            })
+
+            breadthFirstSearch(props.gridState, startNode, endNode)
+        }
     }
 
     function handleWallClearing () { // Sets wall object for wall nodes to false and removes wall CSS
@@ -55,6 +77,11 @@ function NavigationBar (props) {
     function handleDFSDropdown () {
         setCurrentAlgorithm('DFS')
         setNavButtonText('Visualize Depth First Search Algorithm')
+    }
+
+    function handleBFSDropdown () {
+        setCurrentAlgorithm('BFS')
+        setNavButtonText('Visualize Breadth First Search Algorithm')
     }
     
 
@@ -85,7 +112,7 @@ function NavigationBar (props) {
                         <Dropdown.Menu>
                             <Dropdown.Item onClick={handleDijkstraDropdown}>Dijkstra</Dropdown.Item>
                             <Dropdown.Item onClick={handleDFSDropdown}>Depth First Search</Dropdown.Item>
-                            <Dropdown.Item href="">Something else</Dropdown.Item>
+                            <Dropdown.Item onClick={handleBFSDropdown}>Breadth First Search</Dropdown.Item>
                         </Dropdown.Menu>
                     </Dropdown>
                 </Container>
@@ -105,8 +132,7 @@ function runCurrentAlgorithm (props, algorithm) {
     visualizeAlgorithm(props.gridState, algorithm)
 
     const visitedNodes = visualizeAlgorithm(props.gridState, algorithm)
-    const totalRunTime = visitedNodes[0] + visitedNodes[1]
-    console.log(totalRunTime)
+    const totalRunTime = visitedNodes[0] + visitedNodes[1]  // I make a total run time variable so the program knows the algorithm is running while the neighbors are being visited and while the shortes path is being drawn
 
     for (let i = 0; i <= totalRunTime; i++) {
         if (i === totalRunTime) {
