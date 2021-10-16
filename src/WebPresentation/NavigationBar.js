@@ -4,11 +4,13 @@ import React from 'react'
 import { START_NODE_ROW, START_NODE_COLUMN, END_NODE_ROW, END_NODE_COLUMN } from '../Grid/gridFunctions.js'
 
 import { Button, Container, Dropdown, Navbar } from 'react-bootstrap';
-import { visualizeDijkstra, visualizeDFS } from '../Animations/algorithmAnimations';
+import { visualizeAlgorithm } from '../Animations/algorithmAnimations';
 
 import { useState } from 'react';
 import { getAllNodes } from '../Grid/gridFunctions.js';
 
+import dijkstra from '../Algorithms/dijkstra.js';
+import depthFirstSearch from '../Algorithms/depthFirstSearch.js';
 
 
 function NavigationBar (props) {
@@ -22,12 +24,12 @@ function NavigationBar (props) {
         }
 
         if (currentAlgorithm === 'dijkstra') {
-            runDijkstra(props)   
+            runCurrentAlgorithm(props, dijkstra)   
         }
 
 
         if (currentAlgorithm === 'DFS') {
-            visualizeDFS(props.gridState)
+            runCurrentAlgorithm(props, depthFirstSearch)   
         }
     }
 
@@ -97,12 +99,12 @@ function NavigationBar (props) {
 
 
 
-function runDijkstra (props) {
+function runCurrentAlgorithm (props, algorithm) {
     props.setAlgorithmInProgress(true)
             
-    visualizeDijkstra(props.gridState)
+    visualizeAlgorithm(props.gridState, algorithm)
 
-    const visitedNodes = visualizeDijkstra(props.gridState).length
+    const visitedNodes = visualizeAlgorithm(props.gridState, algorithm).length
 
     // console.log(visualizeDijkstra(props.gridState).length)
     
@@ -115,6 +117,8 @@ function runDijkstra (props) {
         }
     }    
 }
+
+
 
 
 

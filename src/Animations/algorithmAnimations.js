@@ -15,7 +15,7 @@ import { START_NODE_ROW, START_NODE_COLUMN, END_NODE_ROW, END_NODE_COLUMN } from
 
 
 
-function visualizeDijkstra (grid) { // Retrieves both the shortest nodes in order and the shortes posssible node
+function visualizeAlgorithm (grid, algorithm) { // Retrieves both the shortest nodes in order and the shortes posssible node
     const nodes = getAllNodes(grid);
 
     let startNode = grid[START_NODE_ROW][START_NODE_COLUMN];
@@ -31,7 +31,7 @@ function visualizeDijkstra (grid) { // Retrieves both the shortest nodes in orde
         }
     })
 
-    const visitedNodesInOrder = dijkstra(grid, startNode, endNode)
+    const visitedNodesInOrder = algorithm(grid, startNode, endNode)
     const shortestPath = getShortestPath(endNode);
 
     animateAlgorithm(visitedNodesInOrder, shortestPath)
@@ -41,27 +41,4 @@ function visualizeDijkstra (grid) { // Retrieves both the shortest nodes in orde
 
 
 
-
-function visualizeDFS (grid) {
-    const nodes = getAllNodes(grid);
-
-    let startNode = grid[START_NODE_ROW][START_NODE_COLUMN];
-    let endNode = grid[END_NODE_ROW][END_NODE_COLUMN];
-
-    nodes.forEach(node => { // Defines the start and end node variables that will be passed into the dijkstra function 
-        if (node.isStart) {
-            startNode = grid[node.row][node.column]
-        }
-
-        if (node.isEnd) {
-            endNode = grid[node.row][node.column]
-        }
-    })
-
-    const visitedNodesInOrder = depthFirstSearch(grid, startNode, endNode)
-    const shortestPath = getShortestPath(endNode);
-    animateAlgorithm(visitedNodesInOrder, shortestPath)
-}
-
-
-export { visualizeDijkstra, visualizeDFS };
+export { visualizeAlgorithm };
