@@ -1,6 +1,6 @@
 
 //Algorithms Imports
-import { sortNodesByDistance, getUnvisitedNeighbors, updateUnvisitedNeighbors } from './dijkstra.js'
+import { updateUnvisitedNeighbors } from './dijkstra.js'
 
 // Grid Imports
 import { getAllNodes } from '../Grid/gridFunctions.js'
@@ -24,11 +24,11 @@ function depthFirstSearch (graph, startNode, endNode) {
             return visitedNodesInOrder;
         }
 
-        if (currentVertex == endNode) { // Once the function has reached the endnode, all of the nodes in order of when we visited them will be returned. this is the goal
+        if (currentVertex === endNode) { // Once the function has reached the endnode, all of the nodes in order of when we visited them will be returned. this is the goal
             return visitedNodesInOrder
         }
 
-        if (currentVertex.visited == false) {   // If the current vertex has not been visited yet, it is marked as visited
+        if (currentVertex.visited === false) {   // If the current vertex has not been visited yet, it is marked as visited
             currentVertex.visited = true
             visitedNodesInOrder.push(currentVertex)
         }
@@ -37,7 +37,7 @@ function depthFirstSearch (graph, startNode, endNode) {
      
 
         neighbors.forEach(neighbor => { // If these neighbors are not visited, then they are added to the top of the stack and the function loops again
-            if (neighbor.visited == false) {
+            if (neighbor.visited === false) {
                 stack.push(neighbor)
             }
         })
@@ -55,7 +55,7 @@ function depthFirstSearch (graph, startNode, endNode) {
 
 function setInitialNodes (nodes, startNode) {   // Sets initial values for the node properties in which the starting node will have a different value for every other node
     nodes.forEach(node => {
-        if (node == startNode) {
+        if (node === startNode) {
             node.visited = false;
             node.distance = 0
         } else {

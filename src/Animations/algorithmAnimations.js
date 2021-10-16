@@ -1,11 +1,10 @@
 // These are the animations for specific algorithms such as dijkstra, BFS, DFS, etc.
 
 // Algorithms Imports
-import dijkstra, {getShortestPath} from '../Algorithms/dijkstra.js';
-import depthFirstSearch from '../Algorithms/depthFirstSearch.js';
+import { getShortestPath } from '../Algorithms/dijkstra.js';
 
 // Animations Imports
-import { ANIMATION_SPEED, animateAlgorithm, animateShortestPath, animateNeighborVisitation } from './universalAnimations.js';
+import { animateAlgorithm } from './universalAnimations.js';
 
 // Grid Imports
 import { getAllNodes } from  '../Grid/gridFunctions.js'
