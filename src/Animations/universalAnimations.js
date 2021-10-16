@@ -2,6 +2,23 @@
 
 const ANIMATION_SPEED = 50;
 
+
+function animateAlgorithm (visitedNodesInOrder, shortestPath) {
+    console.log(visitedNodesInOrder)
+    for (let i = 0; i <= visitedNodesInOrder.length; i++) {
+        if (i === visitedNodesInOrder.length) {
+            setTimeout(() =>{
+                animateShortestPath(shortestPath); 
+            }, ANIMATION_SPEED * i)
+        }
+    }
+    
+
+    animateNeighborVisitation(visitedNodesInOrder);
+}
+
+
+
 function animateNeighborVisitation (visitedNodesInOrder) {
 
     for (let i = 0; i < visitedNodesInOrder.length; i++) {
@@ -17,6 +34,8 @@ function animateNeighborVisitation (visitedNodesInOrder) {
     }
 
 }
+
+
 
 
 function animateShortestPath (shortestPathNodes) {
@@ -38,5 +57,5 @@ function animateShortestPath (shortestPathNodes) {
 }
 
 
-export { ANIMATION_SPEED, animateShortestPath, animateNeighborVisitation }
+export { ANIMATION_SPEED, animateAlgorithm, animateShortestPath, animateNeighborVisitation }
 

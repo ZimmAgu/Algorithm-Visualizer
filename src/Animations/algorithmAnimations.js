@@ -5,7 +5,7 @@ import dijkstra, {getShortestPath} from '../Algorithms/dijkstra.js';
 import depthFirstSearch from '../Algorithms/depthFirstSearch.js';
 
 // Animations Imports
-import { ANIMATION_SPEED, animateShortestPath, animateNeighborVisitation } from './universalAnimations.js';
+import { ANIMATION_SPEED, animateAlgorithm, animateShortestPath, animateNeighborVisitation } from './universalAnimations.js';
 
 // Grid Imports
 import { getAllNodes } from  '../Grid/gridFunctions.js'
@@ -34,28 +34,10 @@ function visualizeDijkstra (grid) { // Retrieves both the shortest nodes in orde
     const visitedNodesInOrder = dijkstra(grid, startNode, endNode)
     const shortestPath = getShortestPath(endNode);
 
-    animateDijkstra(visitedNodesInOrder, shortestPath)
+    animateAlgorithm(visitedNodesInOrder, shortestPath)
 
     return visitedNodesInOrder  // I return the visited nodes in order because I need to use it in other components as well
 }
-
-
-
-function animateDijkstra (visitedNodesInOrder, shortestPath) {
-    console.log(visitedNodesInOrder)
-    for (let i = 0; i <= visitedNodesInOrder.length; i++) {
-        if (i === visitedNodesInOrder.length) {
-            setTimeout(() =>{
-                animateShortestPath(shortestPath); 
-            }, ANIMATION_SPEED * i)
-        }
-    }
-    
-
-    animateNeighborVisitation(visitedNodesInOrder);
-}
-
-
 
 
 
@@ -78,7 +60,7 @@ function visualizeDFS (grid) {
 
     const visitedNodesInOrder = depthFirstSearch(grid, startNode, endNode)
     const shortestPath = getShortestPath(endNode);
-    animateDijkstra(visitedNodesInOrder, shortestPath)
+    animateAlgorithm(visitedNodesInOrder, shortestPath)
 }
 
 
