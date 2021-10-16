@@ -1,16 +1,16 @@
 import React from 'react'
+import { useState } from 'react';
+import { Button, Container, Dropdown, Navbar } from 'react-bootstrap';
+
+// Algorithms Imports
+import dijkstra from '../Algorithms/dijkstra.js';
+import depthFirstSearch from '../Algorithms/depthFirstSearch.js';
+import { visualizeAlgorithm } from '../Animations/algorithmAnimations';
+import { ANIMATION_SPEED } from '../Animations/universalAnimations.js';
 
 // Grid Imports
 import { START_NODE_ROW, START_NODE_COLUMN, END_NODE_ROW, END_NODE_COLUMN } from '../Grid/gridFunctions.js'
-
-import { Button, Container, Dropdown, Navbar } from 'react-bootstrap';
-import { visualizeAlgorithm } from '../Animations/algorithmAnimations';
-
-import { useState } from 'react';
 import { getAllNodes } from '../Grid/gridFunctions.js';
-
-import dijkstra from '../Algorithms/dijkstra.js';
-import depthFirstSearch from '../Algorithms/depthFirstSearch.js';
 
 
 function NavigationBar (props) {
@@ -104,16 +104,15 @@ function runCurrentAlgorithm (props, algorithm) {
             
     visualizeAlgorithm(props.gridState, algorithm)
 
-    const visitedNodes = visualizeAlgorithm(props.gridState, algorithm).length
+    const visitedNodes = visualizeAlgorithm(props.gridState, algorithm)
+    const totalRunTime = visitedNodes[0] + visitedNodes[1]
+    console.log(totalRunTime)
 
-    // console.log(visualizeDijkstra(props.gridState).length)
-    
-
-    for (let i = 0; i <= visitedNodes; i++) {
-        if (i === visitedNodes) {
+    for (let i = 0; i <= totalRunTime; i++) {
+        if (i === totalRunTime) {
             setTimeout(() =>{
                 props.setAlgorithmInProgress(false)
-            }, 50 * i)
+            }, ANIMATION_SPEED * i)
         }
     }    
 }

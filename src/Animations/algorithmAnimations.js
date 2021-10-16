@@ -36,7 +36,7 @@ function visualizeAlgorithm (grid, algorithm) { // Retrieves both the shortest n
 
     animateAlgorithm(visitedNodesInOrder, shortestPath)
 
-    return visitedNodesInOrder  // I return the visited nodes in order because I need to use it in other components as well
+    return [visitedNodesInOrder.length, shortestPath.length]  // I need the visited node length and the shortest path length of each algorithm to se the state in another component
 }
 
 
