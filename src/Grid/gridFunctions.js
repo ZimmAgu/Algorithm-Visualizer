@@ -1,11 +1,11 @@
 const GRID_ROW_LENGTH = 15;
-const GRID_COL_LENGTH = 35;
+const GRID_COL_LENGTH = 40;
 
-const START_NODE_ROW = 5;
-const START_NODE_COLUMN = 5;
+const START_NODE_ROW = 7;
+const START_NODE_COLUMN = 10;
 
-const END_NODE_ROW = 5;
-const END_NODE_COLUMN = 20;
+const END_NODE_ROW = 7;
+const END_NODE_COLUMN = 30;
 
 
 
