@@ -25,16 +25,19 @@ function NavigationBar (props) {
         }
 
         if (currentAlgorithm === 'dijkstra') {
+            clearVisitations(props)
             runCurrentAlgorithm(props, dijkstra)   
         }
 
 
         if (currentAlgorithm === 'DFS') {
+            clearVisitations(props)
             runCurrentAlgorithm(props, depthFirstSearch)   
         }
 
 
         if (currentAlgorithm === 'BFS') {
+            clearVisitations(props)
             runCurrentAlgorithm(props, breadthFirstSearch) 
         }
     }
@@ -179,6 +182,26 @@ function clearWalls (props) {
             currentNode.classList.remove('wall')
         })
     }
+}
+
+
+
+function clearVisitations (props) {
+    const newGrid = props.gridState.slice();
+    const nodes = getAllNodes(newGrid);
+
+    
+    nodes.forEach(node => { 
+        const currentNode = document.getElementById(`node-${node.row}-${node.column}`);
+        node.visited = false;
+        node.previousNode = null;
+
+
+        currentNode.classList.remove('visited')
+        currentNode.classList.remove('shortestPathNode')
+        
+        props.setGridState(newGrid)
+    })
 }
 
 
