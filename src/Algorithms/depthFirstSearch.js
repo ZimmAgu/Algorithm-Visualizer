@@ -100,4 +100,4 @@ function getAllNeighbors (node, grid) {    // Gets the nearest unvisited neighbo
 
 
 export default depthFirstSearch;
-export { setInitialNodes }
+export { setInitialNodes, getAllNeighbors }

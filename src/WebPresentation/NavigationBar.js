@@ -35,23 +35,7 @@ function NavigationBar (props) {
 
 
         if (currentAlgorithm === 'BFS') {
-            const nodes = getAllNodes(props.gridState);
-
-            let startNode = props.gridState[START_NODE_ROW][START_NODE_COLUMN];
-            let endNode = props.gridState[END_NODE_ROW][END_NODE_COLUMN];
-
-
-            nodes.forEach(node => { // Defines the start and end node variables that will be passed into the dijkstra function 
-                if (node.isStart) {
-                    startNode = props.gridState[node.row][node.column]
-                }
-
-                if (node.isEnd) {
-                    endNode = props.gridState[node.row][node.column]
-                }
-            })
-
-            breadthFirstSearch(props.gridState, startNode, endNode)
+            runCurrentAlgorithm(props, breadthFirstSearch) 
         }
     }
 
