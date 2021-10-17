@@ -20,25 +20,27 @@ function NavigationBar (props) {
 
 
     function handleVisualizeButton () {
-        if (currentAlgorithm == null) {
-            setNavButtonText('Choose an Algorithm')
-        }
+        if (props.algorithmInProgress !== true) {
+            if (currentAlgorithm == null) {
+                setNavButtonText('Choose an Algorithm')
+            }
 
-        if (currentAlgorithm === 'dijkstra') {
-            clearVisitations(props)
-            runCurrentAlgorithm(props, dijkstra)   
-        }
-
-
-        if (currentAlgorithm === 'DFS') {
-            clearVisitations(props)
-            runCurrentAlgorithm(props, depthFirstSearch)   
-        }
+            if (currentAlgorithm === 'dijkstra') {
+                clearVisitations(props)
+                runCurrentAlgorithm(props, dijkstra)   
+            }
 
 
-        if (currentAlgorithm === 'BFS') {
-            clearVisitations(props)
-            runCurrentAlgorithm(props, breadthFirstSearch) 
+            if (currentAlgorithm === 'DFS') {
+                clearVisitations(props)
+                runCurrentAlgorithm(props, depthFirstSearch)   
+            }
+
+
+            if (currentAlgorithm === 'BFS') {
+                clearVisitations(props)
+                runCurrentAlgorithm(props, breadthFirstSearch) 
+            }
         }
     }
 
