@@ -22,7 +22,7 @@ function UniversalAnimations(props) {
 
 
 function animateAlgorithm (visitedNodesInOrder, shortestPath) {
-    console.log(ANIMATION_SPEED)
+    // console.log(ANIMATION_SPEED)
     for (let i = 0; i <= visitedNodesInOrder.length; i++) {
         if (i === visitedNodesInOrder.length) {
             setTimeout(() =>{
