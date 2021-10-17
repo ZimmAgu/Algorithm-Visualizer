@@ -1,9 +1,28 @@
 // These are the animations that can be used in any algorithms such as visiting neighbors and animating the shortest path
+import React from 'react'
 
-const ANIMATION_SPEED = 50;
+
+
+
+let ANIMATION_SPEED = 50;
+
+
+
+function UniversalAnimations(props) {
+    ANIMATION_SPEED = props.mySpeed
+    return (
+        <>
+            
+        </>
+    )
+}
+
+
+
 
 
 function animateAlgorithm (visitedNodesInOrder, shortestPath) {
+    console.log(ANIMATION_SPEED)
     for (let i = 0; i <= visitedNodesInOrder.length; i++) {
         if (i === visitedNodesInOrder.length) {
             setTimeout(() =>{
@@ -55,6 +74,6 @@ function animateShortestPath (shortestPathNodes) {
     
 }
 
-
+export default UniversalAnimations
 export { ANIMATION_SPEED, animateAlgorithm, animateShortestPath, animateNeighborVisitation }
 

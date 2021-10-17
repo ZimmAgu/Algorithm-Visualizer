@@ -8,6 +8,7 @@ import depthFirstSearch from '../Algorithms/depthFirstSearch.js';
 import breadthFirstSearch from '../Algorithms/breadthFirstSearch.js';
 import { visualizeAlgorithm } from '../Animations/algorithmAnimations';
 import { ANIMATION_SPEED } from '../Animations/universalAnimations.js';
+import UniversalAnimations from '../Animations/universalAnimations.js'
 
 // Grid Imports
 import { START_NODE_ROW, START_NODE_COLUMN, END_NODE_ROW, END_NODE_COLUMN } from '../Grid/gridFunctions.js'
@@ -17,7 +18,8 @@ import { getAllNodes } from '../Grid/gridFunctions.js';
 function NavigationBar (props) {
     const [currentAlgorithm, setCurrentAlgorithm] = useState(null);
     const [navButtonText, setNavButtonText] = useState('Visualize');
-
+    const [visualizationSpeed, setVisualizationSpeed] = useState(50)
+    
 
     function handleVisualizeButton () {
         if (props.algorithmInProgress !== true) {
@@ -74,16 +76,24 @@ function NavigationBar (props) {
     }
     
 
+    function handleSlowSpeedDropDown () {
+        setVisualizationSpeed(75)
+    }
 
+    function handleNormalSpeedDropDown () {
+        setVisualizationSpeed(50)
+    }
+
+    function handleFastSpeedDropDown () {
+        setVisualizationSpeed(25)
+    }
 
     return (
         <>
             <Navbar expand="lg" bg="dark" variant="dark">
+                <UniversalAnimations mySpeed={visualizationSpeed}/>
                 <Container>
                     <Navbar.Brand href="">Algorithm Visualizer</Navbar.Brand>
-
-                    <Button onClick={handleVisualizeButton}>{navButtonText}</Button>
-
 
                     <Button variant="secondary" onClick={handleBoardReset}>
                         Reset Board
@@ -92,6 +102,22 @@ function NavigationBar (props) {
                     <Button variant="secondary" onClick={handleWallClearing}>
                         Clear Walls
                     </Button>
+
+                    <Button onClick={handleVisualizeButton}>{navButtonText}</Button>
+
+                    <Dropdown>
+                        <Dropdown.Toggle variant="dark" id="dropdown-basic">
+                            Visualization Speed
+                        </Dropdown.Toggle>
+
+                        <Dropdown.Menu>
+                            <Dropdown.Item onClick={handleSlowSpeedDropDown}>Slow</Dropdown.Item>
+                            <Dropdown.Item onClick={handleNormalSpeedDropDown}>Normal</Dropdown.Item>
+                            <Dropdown.Item onClick={handleFastSpeedDropDown}>Fast</Dropdown.Item>
+                        </Dropdown.Menu>
+                    </Dropdown>
+
+
 
                     <Dropdown>
                         <Dropdown.Toggle variant="dark" id="dropdown-basic">
