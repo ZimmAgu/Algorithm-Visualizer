@@ -7,11 +7,13 @@
 }
 
 .startNode {
-  background-color: green;
+  background-image: url("/src/Icons/startNode.png");
+  background-size: contain;
 }
   
 .endNode {
-  background-color: red;
+  background-image: url("/src/Icons/endNode.png");
+  background-size: contain;
 }
 
 .visited {
