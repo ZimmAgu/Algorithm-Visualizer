@@ -101,13 +101,13 @@ function NavigationBar (props) {
             <Navbar expand="lg" bg="dark" variant="dark">
                 <UniversalAnimations mySpeed={visualizationSpeed}/>
                 <Container>
-                    <Navbar.Brand href="">Algorithm Visualizer</Navbar.Brand>
+                    <Navbar.Brand>Algorithm Visualizer</Navbar.Brand>
 
-                    <Button variant="secondary" onClick={handleBoardReset}>
+                    <Button variant="dark" onClick={handleBoardReset}>
                         Reset Board
                     </Button>
 
-                    <Button variant="secondary" onClick={handleWallClearing}>
+                    <Button variant="dark" onClick={handleWallClearing}>
                         Clear Walls
                     </Button>
 
