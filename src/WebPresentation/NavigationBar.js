@@ -18,74 +18,82 @@ import { getAllNodes } from '../Grid/gridFunctions.js';
 function NavigationBar (props) {
     const [currentAlgorithm, setCurrentAlgorithm] = useState(null);
     const [navButtonText, setNavButtonText] = useState('Visualize');
-    const [visualizationSpeed, setVisualizationSpeed] = useState(50)
+    const [visualizationSpeed, setVisualizationSpeed] = useState(50);
+    const [visualizationSpeedText, setVisualizationSpeedText] = useState('Normal')
     
 
     function handleVisualizeButton () {
         if (props.algorithmInProgress !== true) {
             if (currentAlgorithm == null) {
-                setNavButtonText('Choose an Algorithm')
+                setNavButtonText('Choose an Algorithm');
             }
 
             if (currentAlgorithm === 'dijkstra') {
-                clearVisitations(props)
-                runCurrentAlgorithm(props, dijkstra)   
+                clearVisitations(props);
+                runCurrentAlgorithm(props, dijkstra);
             }
 
 
             if (currentAlgorithm === 'DFS') {
-                clearVisitations(props)
-                runCurrentAlgorithm(props, depthFirstSearch)   
+                clearVisitations(props);
+                runCurrentAlgorithm(props, depthFirstSearch); 
             }
 
 
             if (currentAlgorithm === 'BFS') {
-                clearVisitations(props)
-                runCurrentAlgorithm(props, breadthFirstSearch) 
+                clearVisitations(props);
+                runCurrentAlgorithm(props, breadthFirstSearch);
             }
         }
     }
 
     function handleWallClearing () { // Sets wall object for wall nodes to false and removes wall CSS
-        clearWalls(props)
+        clearWalls(props);
     }
 
 
     function handleBoardReset () { // Resets the board back to it's initial state
-        
-        resetBoard(props, setCurrentAlgorithm, setNavButtonText)
-        
+        resetBoard(props, setCurrentAlgorithm, setNavButtonText);
     }
 
 
 
     function handleDijkstraDropdown () {
-        setCurrentAlgorithm('dijkstra')
-        setNavButtonText('Visualize Dijkstras Algorithm')
+        setCurrentAlgorithm('dijkstra');
+        setNavButtonText('Visualize Dijkstras Algorithm');
     }
 
 
     function handleDFSDropdown () {
-        setCurrentAlgorithm('DFS')
-        setNavButtonText('Visualize Depth First Search Algorithm')
+        setCurrentAlgorithm('DFS');
+        setNavButtonText('Visualize Depth First Search Algorithm');
     }
 
     function handleBFSDropdown () {
-        setCurrentAlgorithm('BFS')
-        setNavButtonText('Visualize Breadth First Search Algorithm')
+        setCurrentAlgorithm('BFS');
+        setNavButtonText('Visualize Breadth First Search Algorithm');
     }
     
 
     function handleSlowSpeedDropDown () {
-        setVisualizationSpeed(75)
+        if (props.algorithmInProgress !== true) {
+            setVisualizationSpeed(75);
+            setVisualizationSpeedText("Slow")
+        }
     }
 
     function handleNormalSpeedDropDown () {
-        setVisualizationSpeed(50)
+        if (props.algorithmInProgress !== true) {
+            setVisualizationSpeed(50);
+            setVisualizationSpeedText("Normal")
+        }
     }
 
     function handleFastSpeedDropDown () {
-        setVisualizationSpeed(25)
+        if (props.algorithmInProgress !== true) {
+            setVisualizationSpeed(25);
+            setVisualizationSpeedText("Fast")
+        }
     }
 
     return (
@@ -107,7 +115,7 @@ function NavigationBar (props) {
 
                     <Dropdown>
                         <Dropdown.Toggle variant="dark" id="dropdown-basic">
-                            Visualization Speed
+                            Current Speed: {visualizationSpeedText}
                         </Dropdown.Toggle>
 
                         <Dropdown.Menu>
