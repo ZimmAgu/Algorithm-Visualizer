@@ -14,8 +14,9 @@ span {
     outline: 1px solid black;
     width: 2em;
     height: 2em;
-    margin: 1em 5em 0em 0.5em;
+    margin: 1em 4em 0em 0.5em;
 }
+
 
 .visitedShowcase {
     background-color: rgba(34, 167, 240, 1);
@@ -23,6 +24,10 @@ span {
 
 .shortestPathShowcase {
     background-color: rgba(247, 202, 24, 1)
+}
+
+.wallShowcase {
+  background-color: gray;
 }
 
 

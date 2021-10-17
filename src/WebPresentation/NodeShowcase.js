@@ -17,6 +17,9 @@ function NodeShowcase () {
                 <span>Shortest Path</span>
                 <div className="nodeShowcase shortestPathShowcase"></div>
 
+                <span>Wall</span>
+                <div className="nodeShowcase wallShowcase"></div>
+
                 <span>Start Node</span>
                 <div className="nodeShowcase startNodeShowcase"></div>
 
