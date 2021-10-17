@@ -13,8 +13,9 @@ import { useEffect, useState } from 'react';
 import { setUpGrid, getGridWithToggledWall, getAllNodes } from '../Grid/gridFunctions.js';
 import Node from './Node.js'
 
-// Visuals Imports
-import NavigationBar from '../WebPresentation/NavigationBar';
+// Web Presentation Imports
+import NavigationBar from '../WebPresentation/NavigationBar.js';
+import NodeShowcase from '../WebPresentation/NodeShowcase.js';
 
 
 
@@ -200,6 +201,8 @@ function PathFinder (props) {
                 algorithmInProgress={algorithmInProgress}
                 setAlgorithmInProgress={setAlgorithmInProgress}
             ></NavigationBar>
+
+            <NodeShowcase />
 
             <div className="grid">
                 {gridState.map((row, rowId) => {

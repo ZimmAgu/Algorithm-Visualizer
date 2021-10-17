@@ -1,0 +1,40 @@
+.showcaseOutline {
+    margin: 1em 5em 0em 5em;
+    padding-left: 5em;
+    /* outline: 1px solid black; */
+}
+
+span {
+    font-weight: bold;
+}
+
+
+.nodeShowcase {
+    display: inline-block;
+    outline: 1px solid black;
+    width: 2em;
+    height: 2em;
+    margin: 1em 5em 0em 0.5em;
+}
+
+.visitedShowcase {
+    background-color: rgba(34, 167, 240, 1);
+}
+
+.shortestPathShowcase {
+    background-color: rgba(247, 202, 24, 1)
+}
+
+
+.startNodeShowcase {
+    background-image: url("/src/Icons/startNode.png");
+    background-size: contain; 
+    outline: none
+}
+
+
+.endNodeShowcase {
+    background-image: url("/src/Icons/endNode.png");
+    background-size: contain; 
+    outline: none
+}
