@@ -30,6 +30,7 @@ function PathFinder (props) {
     const [endNodeDragState, setEndNodeDragState] = useState(false);
     const [algorithmInProgress, setAlgorithmInProgress] = useState(false);
     const [currentAlgorithm, setCurrentAlgorithm] = useState(null);
+    
 
 
 
@@ -208,7 +209,11 @@ function PathFinder (props) {
             ></NavigationBar>
 
             <NodeShowcase />
-            <AlgoDescription />
+            
+            <AlgoDescription
+                currentAlgorithm={currentAlgorithm}
+                setCurrentAlgorithm={setCurrentAlgorithm} 
+            />
 
             <div className="grid">
                 {gridState.map((row, rowId) => {

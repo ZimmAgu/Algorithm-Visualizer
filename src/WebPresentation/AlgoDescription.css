@@ -1,0 +1,37 @@
+.descriptionText {
+    margin-top: 1.5em;
+    font-size: 1.2rem;
+    text-align: center;
+}
+
+
+@media (max-width: 1400px) {
+    .descriptionText {
+        font-size: 1.1em;
+    }
+}
+  
+@media (max-width: 1300px) {
+    .descriptionText {
+        font-size: 1em;
+    }
+}
+
+@media (max-width: 1250px) {
+    .descriptionText {
+        font-size: 0.9em;
+    }
+}
+
+@media (max-width: 1200px) {
+.descriptionText {
+    font-size: 0.8em;
+}
+}
+
+
+@media (max-width: 1150px) {
+.descriptionText {
+    font-size: 0.8em;
+}
+}
