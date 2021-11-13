@@ -58,19 +58,25 @@ function NavigationBar (props) {
 
 
     function handleDijkstraDropdown () {
-        props.setCurrentAlgorithm('dijkstra');
-        setNavButtonText('Visualize Dijkstras Algorithm');
+        if (props.algorithmInProgress !== true) {
+            props.setCurrentAlgorithm('dijkstra');
+            setNavButtonText('Visualize Dijkstras Algorithm');
+        }
     }
 
 
     function handleDFSDropdown () {
-        props.setCurrentAlgorithm('DFS');
-        setNavButtonText('Visualize Depth First Search Algorithm');
+        if (props.algorithmInProgress !== true) {
+            props.setCurrentAlgorithm('DFS');
+            setNavButtonText('Visualize Depth First Search Algorithm');
+        }
     }
 
     function handleBFSDropdown () {
-        props.setCurrentAlgorithm('BFS');
-        setNavButtonText('Visualize Breadth First Search Algorithm');
+        if (props.algorithmInProgress !== true) {
+            props.setCurrentAlgorithm('BFS');
+            setNavButtonText('Visualize Breadth First Search Algorithm');
+        }
     }
     
 

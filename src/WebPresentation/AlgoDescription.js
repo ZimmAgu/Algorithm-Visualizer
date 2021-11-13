@@ -18,11 +18,11 @@ function AlgoDescription (props) {
         }
 
         if (props.currentAlgorithm === 'DFS') {
-            setCurrentDescription("Depth First Search gurantees the shortest path")
+            setCurrentDescription("Depth First Search does not gurantee the shortest path")
         }
 
         if (props.currentAlgorithm === 'BFS') {
-            setCurrentDescription("Breadth First Search does not gurantee the shortest path")
+            setCurrentDescription("Breadth First Search gurantees the shortest path")
         }
     }, [props.currentAlgorithm]);
 
