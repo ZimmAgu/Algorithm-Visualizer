@@ -14,6 +14,7 @@ import { setUpGrid, getGridWithToggledWall, getAllNodes } from '../Grid/gridFunc
 import Node from './Node.js'
 
 // Web Presentation Imports
+import AlgoDescription from '../WebPresentation/AlgoDescription.js';
 import NavigationBar from '../WebPresentation/NavigationBar.js';
 import NodeShowcase from '../WebPresentation/NodeShowcase.js';
 
@@ -28,6 +29,8 @@ function PathFinder (props) {
     const [startNodeDragState, setStartNodeDragState] = useState(false);
     const [endNodeDragState, setEndNodeDragState] = useState(false);
     const [algorithmInProgress, setAlgorithmInProgress] = useState(false);
+    const [currentAlgorithm, setCurrentAlgorithm] = useState(null);
+
 
 
 
@@ -200,9 +203,12 @@ function PathFinder (props) {
                 setGridState={setGridState}
                 algorithmInProgress={algorithmInProgress}
                 setAlgorithmInProgress={setAlgorithmInProgress}
+                currentAlgorithm={currentAlgorithm}
+                setCurrentAlgorithm={setCurrentAlgorithm}
             ></NavigationBar>
 
             <NodeShowcase />
+            <AlgoDescription />
 
             <div className="grid">
                 {gridState.map((row, rowId) => {

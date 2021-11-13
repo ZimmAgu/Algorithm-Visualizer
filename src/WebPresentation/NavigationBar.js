@@ -16,7 +16,6 @@ import { getAllNodes } from '../Grid/gridFunctions.js';
 
 
 function NavigationBar (props) {
-    const [currentAlgorithm, setCurrentAlgorithm] = useState(null);
     const [navButtonText, setNavButtonText] = useState('Visualize');
     const [visualizationSpeed, setVisualizationSpeed] = useState(50);
     const [visualizationSpeedText, setVisualizationSpeedText] = useState('Normal')
@@ -24,23 +23,23 @@ function NavigationBar (props) {
 
     function handleVisualizeButton () {
         if (props.algorithmInProgress !== true) {
-            if (currentAlgorithm == null) {
+            if (props.currentAlgorithm == null) {
                 setNavButtonText('Choose an Algorithm');
             }
 
-            if (currentAlgorithm === 'dijkstra') {
+            if (props.currentAlgorithm === 'dijkstra') {
                 clearVisitations(props);
                 runCurrentAlgorithm(props, dijkstra);
             }
 
 
-            if (currentAlgorithm === 'DFS') {
+            if (props.currentAlgorithm === 'DFS') {
                 clearVisitations(props);
                 runCurrentAlgorithm(props, depthFirstSearch); 
             }
 
 
-            if (currentAlgorithm === 'BFS') {
+            if (props.currentAlgorithm === 'BFS') {
                 clearVisitations(props);
                 runCurrentAlgorithm(props, breadthFirstSearch);
             }
@@ -53,24 +52,24 @@ function NavigationBar (props) {
 
 
     function handleBoardReset () { // Resets the board back to it's initial state
-        resetBoard(props, setCurrentAlgorithm, setNavButtonText);
+        resetBoard(props, props.setCurrentAlgorithm, setNavButtonText);
     }
 
 
 
     function handleDijkstraDropdown () {
-        setCurrentAlgorithm('dijkstra');
+        props.setCurrentAlgorithm('dijkstra');
         setNavButtonText('Visualize Dijkstras Algorithm');
     }
 
 
     function handleDFSDropdown () {
-        setCurrentAlgorithm('DFS');
+        props.setCurrentAlgorithm('DFS');
         setNavButtonText('Visualize Depth First Search Algorithm');
     }
 
     function handleBFSDropdown () {
-        setCurrentAlgorithm('BFS');
+        props.setCurrentAlgorithm('BFS');
         setNavButtonText('Visualize Breadth First Search Algorithm');
     }
     
@@ -196,7 +195,7 @@ function resetBoard (props, setCurrentAlgorithm, setNavButtonText) {
             newGrid[END_NODE_ROW][END_NODE_COLUMN].isEnd = true;
             
             props.setGridState(newGrid)
-            setCurrentAlgorithm(null)
+            props.setCurrentAlgorithm(null)
             setNavButtonText('Visualize')
         }
     })
